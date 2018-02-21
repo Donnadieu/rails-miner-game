@@ -30,7 +30,6 @@ RSpec.describe User, type: :model do
     user = build(:user)
     password = user.password
     user.save
-
     expect(User.last.password).to be_nil
     expect(password).to_not eq(User.last.encrypted_password)
   end
