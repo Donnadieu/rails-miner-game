@@ -3,4 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, uniqueness: true
   validates :username, presence: true
+
+  has_many :miners
 end
