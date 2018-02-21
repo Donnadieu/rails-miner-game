@@ -2,8 +2,8 @@ require 'faker'
 
 FactoryBot.define do
   factory :user do
-    username { Faker::Name }
+    username { Faker::Name.name }
     email { Faker::Internet.email }
-    password 'password'
+    password { Faker::Name.name }
   end
 end
