@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  before do
+    @user = create(:user)
+    @wallet = create(:wallet, user_id: @user.id)
+    @coin_one = create(:coin, wallet_id: @wallet.id)
+    @coin_two = create(:coin, wallet_id: @wallet.id)
+  end
   it 'has a valid "User" factory' do
     expect(build(:user)).to_not be_nil
   end
@@ -34,11 +40,22 @@ RSpec.describe User, type: :model do
     expect(password).to_not eq(User.last.encrypted_password)
   end
 
-  describe 'Assosciation with Miner' do
+  describe 'Assosciations' do
     it 'has many miners' do
       user = create(:user)
 
       expect(user.miners.build).to be_instance_of(Miner)
+    end
+
+    it 'has one wallet' do
+      expect(@user.wallet).to be_instance_of(Wallet)
+      expect(@user.wallet.id).to eq(@wallet.id)
+    end
+
+    it 'has many coins, through a wallet' do
+      expect(@user.coins.count).to eq(2)
+      expect(@user.coins).to include(@coin_one)
+      expect(@user.coins).to include(@coin_two)
     end
   end
 end

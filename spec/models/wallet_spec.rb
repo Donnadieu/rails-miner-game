@@ -1,29 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Wallet, type: :model do
+  before do
+    @user = create(:user)
+    @wallet = create(:wallet, user_id: @user.id)
+  end
   it 'has a valid "Wallet" factory' do
-    expect(build(:wallet)).to be_valid
+    expect(@wallet).to be_valid
   end
 
   it 'has a "limit" attribute' do
-    wallet = build(:wallet, limit: 500.00)
-
-    expect(wallet.limit).to_not be_nil
-    expect(build(:wallet)).to be_valid
+    expect(@wallet.limit).to_not be_nil
+    expect(@wallet.limit).to be_instance_of(Float)
   end
 
-  it 'has a "balance" attribute' do
-    wallet = build(:wallet, balance: 200.00)
-
-    expect(wallet.balance).to_not be_nil
-    expect(build(:wallet)).to be_valid
-  end
-
-  describe 'Assosciation with Coin' do
+  describe 'Assosciations' do
     it 'has many coins' do
-      wallet = create(:wallet)
-
-      expect(wallet.coins.build).to be_instance_of(Coin)
+      expect(@wallet.coins.build).to be_instance_of(Coin)
+    end
+    it 'belongs to a User' do
+      expect(@wallet.user).to be_instance_of(User)
+      expect(@wallet.user_id).to eq(@user.id)
     end
   end
 end
