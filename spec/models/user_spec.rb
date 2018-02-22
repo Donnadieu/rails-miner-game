@@ -33,4 +33,12 @@ RSpec.describe User, type: :model do
     expect(User.last.password).to be_nil
     expect(password).to_not eq(User.last.encrypted_password)
   end
+
+  describe 'Assosciation with Miner' do
+    it 'has many miners' do
+      user = create(:user)
+
+      expect(user.miners.build).to be_instance_of(Miner)
+    end
+  end
 end
