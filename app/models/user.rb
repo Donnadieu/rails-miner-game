@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :miners
   has_one :wallet
+  has_many :coins, through: :wallet
 end
