@@ -4,7 +4,7 @@ class CreateCoins < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :symbol
       t.float :difficulty
-      t.float :price
+      t.float :amount
 
       t.timestamps
     end

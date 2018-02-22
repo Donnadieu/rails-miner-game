@@ -5,4 +5,5 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :miners
+  has_one :wallet
 end
