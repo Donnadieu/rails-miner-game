@@ -37,7 +37,8 @@ RSpec.describe Coin, type: :model do
     it 'belongs to a user through wallet' do
       coin = create(:coin, wallet_id: @wallet.id)
 
-      expect(@wallet.coins).to include(coin)
+      expect(coin.wallet.user).to be_instance_of(User)
+      expect(coin.wallet.user.id).to eq(@user.id)
     end
   end
 end
