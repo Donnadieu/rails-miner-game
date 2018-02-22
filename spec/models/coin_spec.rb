@@ -33,6 +33,12 @@ RSpec.describe Coin, type: :model do
     expect(coin.amount).not_to be_nil
   end
 
+  it 'has a price' do
+    coin = build(:coin, wallet_id: @wallet.id)
+
+    expect(coin.price).not_to be_nil
+  end
+
   describe 'Assosciation with Wallet' do
     it 'belongs to a user through wallet' do
       coin = create(:coin, wallet_id: @wallet.id)
