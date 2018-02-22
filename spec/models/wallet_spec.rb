@@ -18,4 +18,12 @@ RSpec.describe Wallet, type: :model do
     expect(wallet.balance).to_not be_nil
     expect(build(:wallet)).to be_valid
   end
+
+  describe 'Assosciation with Coin' do
+    it 'has many coins' do
+      wallet = create(:wallet)
+
+      expect(wallet.coins.build).to be_instance_of(Coin)
+    end
+  end
 end
