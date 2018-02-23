@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def index
-    binding.pry
     redirect_to '/home'
   end
 end

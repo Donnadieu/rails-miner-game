@@ -10,8 +10,8 @@ describe UsersController, type: :controller do
     end
     it 'should let a user see homepage when logged in' do
       login_with create(:user)
-      get :index
-      expect(response).to render_template(:index)
+      get :home
+      expect(response).to render_template(:home)
     end
   end
 end
