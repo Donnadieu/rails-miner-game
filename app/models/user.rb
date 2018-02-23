@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :username, presence: true
 
+
   has_many :miners
   has_one :wallet
   has_many :coins, through: :wallet

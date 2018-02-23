@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe UsersController, type: :controller do
   render_views
-  require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
   describe 'GET #index' do
     context 'logged in' do

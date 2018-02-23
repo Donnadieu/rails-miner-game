@@ -22,4 +22,17 @@ describe 'Feature Test: User', type: :feature do
       expect(current_path).to eq('/home')
     end
   end
+  describe 'wallet creation' do
+    it 'creates a wallet for the user upon siging up' do
+      visit new_user_registration_path
+
+      fill_in 'user_username', with: 'Omar'
+      fill_in 'user_email', with: 'newmail@email.com'
+      fill_in 'user_password', with: '12345678'
+      fill_in 'user_password_confirmation', with: '12345678'
+      click_button 'Sign up'
+
+      expect(User.last.wallet).to be_instance_of(Wallet)
+    end
+  end
 end
