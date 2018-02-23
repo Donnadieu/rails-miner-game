@@ -17,9 +17,9 @@ describe 'Feature Test: User', type: :feature do
       expect(User.last.uid).to eq('12345')
     end
     it 'should sign in the user whe clicking "Sign in with Facebook" ' do
-      visit home_path
+      visit new_user_session_path
       click_link 'Sign in with Facebook'
-      expect(current_user.uid).to eq('12345')
+      expect(current_path).to eq('/home')
     end
   end
 end
