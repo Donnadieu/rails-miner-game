@@ -2,14 +2,16 @@ require 'rails_helper'
 
 describe UsersController, type: :controller do
   render_views
-
-  describe 'anonymous user' do
-    before :each do
+  context 'logged in' do
+    it 'should be redirected to signin when not logged in' do
       login_with nil
-    end
-    it 'should be redirected to signin' do
       get :index
       expect(response).to redirect_to(new_user_session_path)
+    end
+    it 'should let a user see homepage when logged in' do
+      login_with create(:user)
+      get :index
+      expect(response).to render_template(:index)
     end
   end
 end
