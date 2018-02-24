@@ -6,9 +6,9 @@ class User < ApplicationRecord
   validates :username, presence: true
 
 
-  has_many :miners
   has_one :wallet
   has_many :coins, through: :wallet
+  has_many :miners, through: :mining_rigs
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
