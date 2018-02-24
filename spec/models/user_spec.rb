@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
     @wallet = create(:wallet, user_id: @user.id)
     @coin_one = create(:coin, wallet_id: @wallet.id)
     @coin_two = create(:coin, wallet_id: @wallet.id)
+    @mining_rig = create(:mining_rig, user_id: @user.id)
   end
   it 'has a valid "User" factory' do
     expect(build(:user)).to_not be_nil
@@ -41,10 +42,10 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Assosciations' do
-    it 'has many miners' do
+    it 'has many mining rigs' do
       user = create(:user)
 
-      expect(user.miners.build).to be_instance_of(Miner)
+      expect(user.mining_rigs.build).to be_instance_of(MiningRig)
     end
 
     it 'has one wallet' do
@@ -56,6 +57,10 @@ RSpec.describe User, type: :model do
       expect(@user.coins.count).to eq(2)
       expect(@user.coins).to include(@coin_one)
       expect(@user.coins).to include(@coin_two)
+    end
+
+    it 'has many miners, through mining rigs' do
+      expect(@mining_rig.miners.build).to be_instance_of(Miner)
     end
   end
 end

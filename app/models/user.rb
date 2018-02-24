@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_one :wallet
   has_many :coins, through: :wallet
+  has_many :mining_rigs
   has_many :miners, through: :mining_rigs
 
   def self.from_omniauth(auth)

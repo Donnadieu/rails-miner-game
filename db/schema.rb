@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224190743) do
-
-  create_table "coin_miners", force: :cascade do |t|
-    t.integer "coin_id"
-    t.integer "miner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20180224202426) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
@@ -34,6 +27,19 @@ ActiveRecord::Schema.define(version: 20180224190743) do
     t.float "consumption"
     t.float "price"
     t.float "hash_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mining_rig_miners", force: :cascade do |t|
+    t.integer "mining_rig_id"
+    t.integer "miner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mining_rigs", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
