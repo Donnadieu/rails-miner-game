@@ -3,26 +3,23 @@
   email: 'omar@email.com',
   password: '12345678'
 )
-
 @mining_rig = MiningRig.create(
   name: Faker::Beer.hop,
   user_id: @user.id
 )
-3.times do
-  Miner.create(
-    consumption: Faker::Number.decimal(2, 2),
-    price: Faker::Number.decimal(2, 2),
-    hash_rate: Faker::Number.decimal(2, 2),
-    mining_rig_id: @mining_rig.id
-  )
-end
-
-
+@miner = Miner.create(
+  consumption: Faker::Number.decimal(2, 2),
+  price: Faker::Number.decimal(2, 2),
+  hash_rate: Faker::Number.decimal(2, 2),
+)
+MiningRigMiner.create(
+  mining_rig_id: @mining_rig.id,
+  miner_id: @miner.id
+)
 @wallet = Wallet.create(
   limit: Faker::Number.number(4),
   user_id: @user.id
 )
-
 Coin.create(
   name: Faker::Beer.hop,
   symbol: Faker::Beer.hop,
