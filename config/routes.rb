@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/home', to: 'users#home'
 
   resources :users, only: [:index, :show] do
-    resources :wallets, only: [:show, :new, :create, :update]
+    resources :wallets, only: [:show, :update]
+    resources :miners
   end
 end
