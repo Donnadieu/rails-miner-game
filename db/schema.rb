@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224202426) do
+ActiveRecord::Schema.define(version: 20180224231646) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20180224202426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wallet_id"
+  end
+
+  create_table "energy_packs", force: :cascade do |t|
+    t.integer "size", default: 25
+    t.float "price", default: 25.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "miners", force: :cascade do |t|

@@ -1,0 +1,2 @@
+class EnergyPack < ApplicationRecord
+end
