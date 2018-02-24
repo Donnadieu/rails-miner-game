@@ -40,11 +40,10 @@ RSpec.describe Coin, type: :model do
   end
 
   describe 'Assosciation with Wallet' do
-    it 'belongs to a user through wallet' do
+    it 'belongs to a wallet' do
       coin = create(:coin, wallet_id: @wallet.id)
 
-      expect(coin.wallet.user).to be_instance_of(User)
-      expect(coin.wallet.user.id).to eq(@user.id)
+      expect(coin.wallet).to be_instance_of(Wallet)
     end
   end
 end
