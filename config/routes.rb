@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/', to: 'users#index'
 
+  resources :energy_packs
+
   resources :users do
     resources :wallets, only: [:show, :update]
     resources :mining_rigs do
