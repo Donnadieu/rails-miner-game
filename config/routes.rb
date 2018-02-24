@@ -6,6 +6,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :wallets, only: [:show, :update]
-    resources :miners
   end
 end
