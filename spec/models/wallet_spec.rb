@@ -5,6 +5,7 @@ RSpec.describe Wallet, type: :model do
     @user = create(:user)
     @wallet = create(:wallet, user_id: @user.id)
   end
+
   it 'has a valid "Wallet" factory' do
     expect(@wallet).to be_valid
   end
@@ -14,10 +15,15 @@ RSpec.describe Wallet, type: :model do
     expect(@wallet.limit).to be_instance_of(Float)
   end
 
+  it 'has a "address" attribute' do
+    expect(@wallet.address).to_not be_nil
+  end
+
   describe 'Assosciations' do
     it 'has many coins' do
       expect(@wallet.coins.build).to be_instance_of(Coin)
     end
+
     it 'belongs to a User' do
       expect(@wallet.user).to be_instance_of(User)
       expect(@wallet.user_id).to eq(@user.id)
