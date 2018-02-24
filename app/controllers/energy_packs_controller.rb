@@ -1,0 +1,2 @@
+class EnergyPacksController < ApplicationController
+end
