@@ -5,7 +5,7 @@ class MyDevise::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    # binding.pry
+    current_user.wallet = Wallet.create(limit: 5000, address: Wallet.create_address)
   end
 
   def update
