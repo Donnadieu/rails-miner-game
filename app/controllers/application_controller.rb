@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def index
-    redirect_to '/home'
+    redirect_to '/users'
   end
 
   protected

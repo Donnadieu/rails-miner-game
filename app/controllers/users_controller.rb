@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  def home
-    @users = User.all
+
+  def index
+    redirect_to user_path(current_user)
   end
 
   def show
-    binding.pry
+
   end
 end
