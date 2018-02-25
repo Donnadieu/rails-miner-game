@@ -6,5 +6,5 @@ class Miner < ApplicationRecord
   validates :name, presence: true
   validates :consumption, numericality: true
   validates :price, numericality: true
-  validates :hash_rate, numericality: true
+  validates :hash_rate, numericality: { less_than_or_equal_to: 14.0 }
 end

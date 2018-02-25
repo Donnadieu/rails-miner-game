@@ -16,4 +16,5 @@ class Coin < ApplicationRecord
   def total_usd
     amount * price.to_f
   end
+  
 end
