@@ -20,11 +20,13 @@ MiningRigMiner.create(
   limit: Faker::Number.number(4),
   user_id: @user.id
 )
-Coin.create(
-  name: Faker::Beer.hop,
-  symbol: Faker::Beer.hop,
-  difficulty: Faker::Number.decimal(2, 2),
-  amount: Faker::Number.decimal(2, 2),
-  price: Faker::Number.decimal(2, 2),
-  wallet_id: @wallet.id
-)
+3.times do
+  Coin.create(
+    name: Faker::Beer.hop,
+    symbol: Faker::Beer.hop,
+    difficulty: Faker::Number.decimal(2, 2),
+    amount: Faker::Number.decimal(2, 2),
+    price: Faker::Number.decimal(2, 2),
+    wallet_id: @wallet.id
+  )
+end

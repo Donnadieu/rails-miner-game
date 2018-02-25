@@ -7,11 +7,16 @@ class Wallet < ApplicationRecord
   end
 
   def balance
-    @total = 0
+    total = 0
     coins.each do |coin|
-      coin_total = coin.amount * coin.price
-      @total += coin_total
+      total += coin.total_usd
     end
-    @total = user.balance + @total
+    total
+  end
+
+  def sell_coin(coin, amount)
+    if amount >= coin.amount
+      coin.amount = coin.amount - amount
+
   end
 end

@@ -1,4 +1,5 @@
 <h1>Wallet Address:</h1>
 <h4><%= @wallet.address %></h4>
-<p>Balance: <%= number_to_currency(@balance) %></p>
-<p>Current Limit: <%= number_to_currency(@wallet.limit)%></p>
+<%= div_for @wallet.coins do |coin| %>
+  <p><%= coin.name %>: <%= number_to_currency(coin.total_usd) %></p>
+<% end %>
