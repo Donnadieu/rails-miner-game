@@ -1,5 +1,15 @@
-<h1>Wallet Address:</h1>
-<h4><%= @wallet.address %></h4>
+<% flash.each do |key, value| %>
+  <% if key == "message" %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
+<% end %>
+<h1>Wallet</h1>
+<h4>Address: <%= @wallet.address %></h4>
 <%= div_for @wallet.coins do |coin| %>
   <p><%= coin.name %>: <%= number_to_currency(coin.total_usd) %></p>
+  <%= form_for coin do |f| %>
+    <%= f.submit 'Sell Coin' %>
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  <% end %>
 <% end %>

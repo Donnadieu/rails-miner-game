@@ -1,12 +1,13 @@
 class Coin < ApplicationRecord
   belongs_to :wallet
 
-  def price
+  def update_price
     url = api_url
-    scraper = Mechanize.new
-    page = scraper.get(url)
-    parsed_page = JSON.parse(page.body)
-    parsed_page["ticker"]["price"] unless !parsed_page["success"]
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    parsed_page = JSON.parse(response)
+    self.price = parsed_page["ticker"]["price"] unless !parsed_page["success"]
+    self.save
   end
 
   def total_usd

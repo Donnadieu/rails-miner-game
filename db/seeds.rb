@@ -17,7 +17,6 @@ MiningRigMiner.create(
   miner_id: @miner.id
 )
 @wallet = Wallet.create(
-  limit: Faker::Number.number(4),
   user_id: @user.id
 )
 3.times do

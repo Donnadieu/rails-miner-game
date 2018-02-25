@@ -13,10 +13,4 @@ class Wallet < ApplicationRecord
     end
     total
   end
-
-  def sell_coin(coin, amount)
-    if amount >= coin.amount
-      coin.amount = coin.amount - amount
-
-  end
 end
