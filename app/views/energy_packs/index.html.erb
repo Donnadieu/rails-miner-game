@@ -1,5 +1,7 @@
 <% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "flash #{key}" %>
+  <% if key == "message" %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
 <% end %>
 <%= div_for @energy_pack do %>
   <%= image_tag(@energy_pack.image) %>
