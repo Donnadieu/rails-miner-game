@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180225010131) do
+ActiveRecord::Schema.define(version: 20180225013859) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180225010131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wallet_id"
+    t.string "api_url", default: "https://api.cryptonator.com/api/ticker/btc-usd"
   end
 
   create_table "energy_packs", force: :cascade do |t|
