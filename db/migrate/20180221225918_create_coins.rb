@@ -3,9 +3,9 @@ class CreateCoins < ActiveRecord::Migration[5.1]
     create_table :coins do |t|
       t.string :name
       t.string :symbol
-      t.float :difficulty
-      t.float :amount
-      t.float :price
+      t.float :difficulty, default: 0.0
+      t.float :amount, default: 0.0
+      t.float :price, default: 0.0
 
       t.timestamps
     end

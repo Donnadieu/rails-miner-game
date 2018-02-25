@@ -1,5 +1,8 @@
 class Coin < ApplicationRecord
   belongs_to :wallet
+  validates :difficulty, numericality: true
+  validates :amount, numericality: true
+  validates :price, numericality: true
 
   def update_price
     url = api_url
