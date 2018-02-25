@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180225182217) do
+ActiveRecord::Schema.define(version: 20180225013859) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
     t.string "symbol"
-    t.float "difficulty"
-    t.float "amount"
-    t.float "price"
+    t.float "difficulty", default: 0.0
+    t.float "amount", default: 0.0
+    t.float "price", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wallet_id"
@@ -33,12 +33,10 @@ ActiveRecord::Schema.define(version: 20180225182217) do
   end
 
   create_table "miners", force: :cascade do |t|
-    t.float "consumption"
-    t.float "price"
-    t.float "hash_rate"
+    t.float "consumption", default: 0.0
+    t.float "hash_rate", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
   end
 
   create_table "mining_rig_miners", force: :cascade do |t|
@@ -73,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180225182217) do
     t.string "uid"
     t.string "image"
     t.integer "energy", default: 0
-    t.float "balance", default: 0.0
+    t.float "balance", default: 2000.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

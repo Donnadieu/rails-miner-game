@@ -8,7 +8,11 @@ class MiningRig < ApplicationRecord
 
   def miners_attributes=(miners_attributes)
     miners_attributes.each_value do |miner_attributes|
-      miners << Miner.find_or_create_by(miner_attributes)
+      miners << Miner.create(miner_attributes)
     end
+  end
+
+  def total_miners
+    miners.count
   end
 end

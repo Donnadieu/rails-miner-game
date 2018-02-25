@@ -1,4 +1,21 @@
 <% if current_user.mining_rigs.empty? %>
   <h1>You do not have any mining rigs click below to create a new one</h1>
+<% else %>
+  <h1>Here are all your mining rigs</h1>
 <% end %>
-<h3><%= link_to 'New Mining Rig', new_user_mining_rig_path %></h3>
+
+<%= div_for @mining_rigs do |mining_rig| %>
+  <h3>Name: <%= mining_rig.name %></h3>
+
+  <p>Total miners: <%= mining_rig.total_miners %></p>
+  <%= div_for mining_rig.miners do |miner| %>
+    <p>Total Miners consumption: <%= miner.consumption %>W</p>
+    <p>Total Miners hash rate: <%= miner.hash_rate %>TH/s</p>
+  <% end %>
+
+  <p><%= link_to 'Edit', edit_user_mining_rig_path(mining_rig, current_user.id) %></p>
+<% end %>
+
+<br></br>
+
+<%= link_to 'New Mining Rig', new_user_mining_rig_path %>

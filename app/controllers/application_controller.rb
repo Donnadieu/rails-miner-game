@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
       user_params.permit(:username, :email, :password)
     end
   end
+
+  def enough_balance?(price)
+    current_user.balace >= price
+  end
 end
