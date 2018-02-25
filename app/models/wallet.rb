@@ -8,10 +8,10 @@ class Wallet < ApplicationRecord
 
   def balance
     @total = 0
-    self.coins.each do |coin|
+    coins.each do |coin|
       coin_total = coin.amount * coin.price
       @total += coin_total
     end
-    @total
+    @total = user.balance + @total
   end
 end
