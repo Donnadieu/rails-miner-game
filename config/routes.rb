@@ -8,8 +8,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :wallets, only: [:show, :update]
-    resources :mining_rigs do
-      resources :miners
-    end
+    resources :mining_rigs
+    resources :miners
   end
 end

@@ -1,0 +1,24 @@
+<h1>New Mining Rig for <%= current_user.username %></h1>
+
+<%= form_for [current_user, mining_rig] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: "required" %>
+
+  <h3>Miners</h3>
+  <h3>Create a new one:</h3>
+
+  <p><%= number_to_currency(1000) %>USD, will get you 14TH/s ±5%</p>
+  <p><%= number_to_currency(500) %>USD, will get you 7TH/s ±5%</p>
+  <p><%= number_to_currency(250) %>USD, will get you 3.5TH/s ±5%</p>
+
+  <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
+    <%= miners_fields.label :name %>
+    <%= miners_fields.text_field :name, required: "required" %>
+    <%= miners_fields.label :hash_rate %>
+    <%= miners_fields.number_field :hash_rate, required: "required", within: 1...15 %>
+  <% end %>
+
+  <br></br>
+
+  <%= f.submit %>
+<% end %>
