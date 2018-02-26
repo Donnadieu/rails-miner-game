@@ -5,6 +5,7 @@ class Miner < ApplicationRecord
   validates :consumption, numericality: true
   validates :hash_rate, inclusion: { in: [14, 7, 3] }
   validates :hash_rate, presence: true
+  validates_associated :mining_rigs
 
   def price
     if hash_rate == 14
