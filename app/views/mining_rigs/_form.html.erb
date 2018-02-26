@@ -19,15 +19,15 @@
 
   <%= f.submit %>
 
-  <h3>Or update existing one</h3>
-  <h3>Number of Miners: <%= mining_rig.total_miners %></h3>
+  <h3>Total number of Miners: <%= mining_rig.total_miners %></h3>
+
+  <br></br>
 
   <%= div_for miners do |miner| %>
     <% if !miner.id.nil? %>
-      <p>Miner ID number: <%= miner.id %></p>
+      <h3>Miner ID number: <%= miner.id %></h3>
       <p>Miner consumption: <%= miner.consumption %>W</p>
       <p>Miner hash rate: <%= miner.hash_rate %>TH/s</p>
-      <%= link_to 'Edit Miner', edit_user_miner_path %>
     <% end %>
   <% end %>
 <% end %>
