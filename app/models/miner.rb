@@ -3,9 +3,9 @@ class Miner < ApplicationRecord
   has_many :mining_rigs, through: :mining_rig_miners
 
   validates :consumption, numericality: true
-  validates :hash_rate, inclusion: { in: [14, 7, 3] }
   validates :hash_rate, presence: true
-  validates_associated :mining_rigs
+  validates_numericality_of :hash_rate, greater_than: 0
+  validates_inclusion_of :hash_rate, in: [3, 7, 14]
 
   def price
     if hash_rate == 14
@@ -29,4 +29,5 @@ class Miner < ApplicationRecord
       325
     end
   end
+
 end

@@ -18,13 +18,4 @@ class ApplicationController < ActionController::Base
   def enough_balance?(price)
     current_user.balance >= price
   end
-
-  def valid_hashrate?
-    case params[:mining_rig][:miners_attributes]['0'][:hash_rate].to_i
-    when 14, 7, 3
-      true
-    else
-      false
-    end
-  end
 end
