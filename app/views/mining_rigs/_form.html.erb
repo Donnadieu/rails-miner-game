@@ -25,9 +25,7 @@
 
   <%= div_for miners do |miner| %>
     <% if !miner.id.nil? %>
-      <h3>Miner ID number: <%= miner.id %></h3>
-      <p>Miner consumption: <%= miner.consumption %>W</p>
-      <p>Miner hash rate: <%= miner.hash_rate %>TH/s</p>
+      <%= render partial: 'miners/miner', locals: {miner: miner} %>
     <% end %>
   <% end %>
 <% end %>

@@ -57,6 +57,11 @@ class MiningRigsController < ApplicationController
     end
   end
 
+  def show
+    @mining_rig = set_mining_rig
+    @miners = @mining_rig.miners
+  end
+
   private
 
   def mining_rig_params

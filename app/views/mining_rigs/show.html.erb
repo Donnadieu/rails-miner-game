@@ -1,0 +1,5 @@
+<h1><%= @mining_rig.name %></h1>
+
+<%= div_for @miners do |miner| %>
+  <%= render partial: 'miners/miner', locals: {miner: miner} %>
+<% end %>
