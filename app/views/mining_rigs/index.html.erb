@@ -8,10 +8,9 @@
   <h3>Name: <%= mining_rig.name %></h3>
 
   <p>Total miners: <%= mining_rig.total_miners %></p>
-  <%= div_for mining_rig.miners do |miner| %>
-    <p>Total Miners consumption: <%= miner.consumption %>W</p>
-    <p>Total Miners hash rate: <%= miner.hash_rate %>TH/s</p>
-  <% end %>
+  <p>Total Miners consumption: W</p>
+  <p>Total Miners hash rate: TH/s</p>
+
 
   <p><%= link_to 'Edit', edit_user_mining_rig_path(current_user.id, mining_rig) %></p>
 <% end %>
