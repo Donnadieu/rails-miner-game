@@ -16,5 +16,13 @@ class Coin < ApplicationRecord
   def total_usd
     amount * price.to_f
   end
-  
+
+  def update_price
+    url = 'https://blockchain.info/q/getdifficulty'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    parsed_page = JSON.parse(response)
+    self.difficulty = parsed_page
+    self.save
+  end
 end

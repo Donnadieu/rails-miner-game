@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20180225013859) do
 
   create_table "coins", force: :cascade do |t|
-    t.string "name"
-    t.string "symbol"
+    t.string "name", default: "Bitcoin"
+    t.string "symbol", default: "BTC"
     t.float "difficulty", default: 0.0
     t.float "amount", default: 0.0
     t.float "price", default: 0.0

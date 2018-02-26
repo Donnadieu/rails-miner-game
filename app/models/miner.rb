@@ -30,4 +30,8 @@ class Miner < ApplicationRecord
     end
   end
 
+  def start_mining
+
+  end
+
 end
