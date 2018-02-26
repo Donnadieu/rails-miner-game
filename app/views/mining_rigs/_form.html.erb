@@ -4,26 +4,30 @@
   <%= f.label :name %>
   <%= f.text_field :name, required: "required" %>
 
-  <h3>Number of Miners: <%= mining_rig.total_miners %></h3>
-
-  <%= div_for miners do |miner| %>
-    <p>Miner ID number: <%= miner.id %></p>
-    <p>Miner consumption: <%= miner.consumption %>W</p>
-    <p>Miner hash rate: <%= miner.hash_rate %>TH/s</p>
-  <% end %>
-
-  <h3>Create a new one:</h3>
+  <h3>Create a new Miner for this Mining Rig:</h3>
 
   <p><%= number_to_currency(1000) %>USD, will get you 14TH/s</p>
   <p><%= number_to_currency(500) %>USD, will get you 7TH/s</p>
-  <p><%= number_to_currency(250) %>USD, will get you 3.5TH/s</p>
+  <p><%= number_to_currency(250) %>USD, will get you 3TH/s</p>
 
   <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
     <%= miners_fields.label :hash_rate %>
-    <%= miners_fields.number_field :hash_rate, required: "required", within: 1...15 %>
+    <%= miners_fields.number_field :hash_rate, required: "required" %>
   <% end %>
 
   <br></br>
 
   <%= f.submit %>
+
+  <h3>Or update existing one</h3>
+  <h3>Number of Miners: <%= mining_rig.total_miners %></h3>
+
+  <%= div_for miners do |miner| %>
+    <% if !miner.id.nil? %>
+      <p>Miner ID number: <%= miner.id %></p>
+      <p>Miner consumption: <%= miner.consumption %>W</p>
+      <p>Miner hash rate: <%= miner.hash_rate %>TH/s</p>
+      <%= link_to 'Edit Miner', edit_user_miner_path %>
+    <% end %>
+  <% end %>
 <% end %>

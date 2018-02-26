@@ -1,8 +1,3 @@
-<% flash.each do |key, value| %>
-  <% if key == "message" %>
-    <%= content_tag :div, value, class: "flash #{key}" %>
-  <% end %>
-<% end %>
 <%= div_for @energy_pack do %>
   <%= image_tag(@energy_pack.image) %>
   <p>Price: <%= number_to_currency(@energy_pack.price) %></p>

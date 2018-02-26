@@ -8,19 +8,24 @@ class MiningRigsController < ApplicationController
   end
 
   def create
-    @mining_rig = MiningRig.new(mining_rig_params)
-    @mining_rig.user = current_user
+    @mining_rig = current_user.mining_rigs.build(mining_rig_params)
     @miner = @mining_rig.miners.last
 
-    if @miner.valid_hashrate?(@miner.hash_rate) && enough_balance?(@miner.price(@miner.hash_rate))
-      @miner.consumption = @miner.get_consumption(@miner.hash_rate)
-      current_user.balance = current_user.balance - @miner.price(@miner.hash_rate)
-    end
-    if @mining_rig.save
-      flash[:message] = 'You succesfully created a Miner for your Mining Rig'
-      redirect_to user_mining_rigs_path(current_user)
+    if enough_balance?(@miner.price)
+      if @mining_rig.save
+        @miner.consumption = @miner.get_consumption
+        current_user.balance = current_user.balance - @miner.price
+        @miner.save
+        current_user.save
+
+        flash[:message] = 'You succesfully created a Miner for your Mining Rig'
+        redirect_to user_mining_rigs_path(current_user)
+      else
+        flash[:message] = @mining_rig.errors.full_messages.to_sentence
+        render :new
+      end
     else
-      flash[:message] = @mining_rig.errors.full_messages
+      flash[:message] = 'You do not have enough balance'
       render :new
     end
   end
@@ -30,10 +35,31 @@ class MiningRigsController < ApplicationController
     @miners = @mining_rig.miners
   end
 
+  def update
+    @mining_rig = set_mining_rig
+    if @mining_rig.update(mining_rig_params)
+      @miner = @mining_rig.miners.last
+      if !enough_balance?(@miner.price)
+        flash[:message] = 'You do not have enough balance'
+        redirect_to edit_user_mining_rig_path(current_user)
+      else
+        @miner.consumption = @miner.get_consumption
+        current_user.balance = current_user.balance - @miner.price
+        @miner.save
+        current_user.save
+        flash[:message] = 'Mining Rig succesfully updated'
+        redirect_to user_mining_rigs_path(current_user)
+      end
+    else
+      flash[:message] = @mining_rig.errors.full_messages.to_sentence
+      redirect_to edit_user_mining_rig_path(current_user)
+    end
+  end
+
   private
 
   def mining_rig_params
-    params.require(:mining_rig).permit(:name, :user_id,  :miners_attributes => [:hash_rate])
+    params.require(:mining_rig).permit(:name, :user_id, :miners_attributes => [:hash_rate])
   end
 
   def set_mining_rig

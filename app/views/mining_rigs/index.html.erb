@@ -13,7 +13,7 @@
     <p>Total Miners hash rate: <%= miner.hash_rate %>TH/s</p>
   <% end %>
 
-  <p><%= link_to 'Edit', edit_user_mining_rig_path(mining_rig, current_user.id) %></p>
+  <p><%= link_to 'Edit', edit_user_mining_rig_path(current_user.id, mining_rig) %></p>
 <% end %>
 
 <br></br>

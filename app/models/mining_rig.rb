@@ -4,11 +4,14 @@ class MiningRig < ApplicationRecord
   has_many :miners, through: :mining_rig_miners
 
   validates :name, uniqueness: true
-  validates :name, presence: true
+  validates_presence_of :name, on: :create
 
   def miners_attributes=(miners_attributes)
     miners_attributes.each_value do |miner_attributes|
-      miners << Miner.create(miner_attributes)
+      miner =  Miner.new(miner_attributes)
+      if miner.valid?
+        miners << miner
+      end
     end
   end
 
