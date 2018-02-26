@@ -31,7 +31,7 @@ class Miner < ApplicationRecord
   end
 
   def start_mining
-
+    
   end
 
 end

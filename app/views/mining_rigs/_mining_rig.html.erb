@@ -1,0 +1,9 @@
+<h3>Name: <%= link_to mining_rig.name, user_mining_rig_path(mining_rig, current_user.id) %></h3>
+
+<p>Total miners: <%= mining_rig.total_miners %></p>
+<p>Total Miners consumption: W</p>
+<p>Total Miners hash rate: TH/s</p>
+
+
+<p><%= button_to 'Edit', edit_user_mining_rig_path(current_user.id, mining_rig), {method: 'get'} %></p>
+<p><%= button_to 'Start Mining' %></p>

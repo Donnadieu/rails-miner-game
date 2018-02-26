@@ -1,8 +1,9 @@
 <%= div_for @energy_pack do %>
-  <%= image_tag(@energy_pack.image) %>
-  <p>Price: <%= number_to_currency(@energy_pack.price) %></p>
-  <p>Size: <%= @energy_pack.size %> W</p>
+
+  <%= render 'energy_pack' %>
+
   <%= form_for @energy_pack do |f| %>
     <%= f.submit "Buy Pack" %>
   <% end %>
+  
 <% end %>

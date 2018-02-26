@@ -1,0 +1,11 @@
+<p><%= coin.name %>: <%= coin.amount %></p>
+
+<% if coin.amount != 0 %>
+
+  <%= form_for coin do |f| %>
+    <%= f.submit 'Sell Coin' %>
+    <%= f.label :amount %>
+    <%= f.text_field :amount%>
+  <% end %>
+  
+<% end %>
