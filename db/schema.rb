@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227004449) do
+ActiveRecord::Schema.define(version: 20180227005847) do
 
 # Could not dump table "coins" because of following StandardError
 #   Unknown type 'ineteger' for column 'miner_id'
