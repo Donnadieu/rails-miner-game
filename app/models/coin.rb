@@ -1,6 +1,5 @@
 class Coin < ApplicationRecord
   belongs_to :wallet
-  belongs_to :miner
   validates :difficulty, numericality: true
   validates :amount, numericality: true
   validates :price, numericality: true

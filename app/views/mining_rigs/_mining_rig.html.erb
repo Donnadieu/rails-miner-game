@@ -1,4 +1,4 @@
-<h3>Name: <%= link_to mining_rig.name, user_mining_rig_path(mining_rig, current_user.id) %></h3>
+<h3>Name: <%= link_to mining_rig.name, user_mining_rig_path(current_user.id, mining_rig) %></h3>
 
 <p>Total miners: <%= mining_rig.total_miners %></p>
 <p>Total Miners consumption: W</p>

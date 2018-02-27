@@ -12,8 +12,18 @@
 
 ActiveRecord::Schema.define(version: 20180227005847) do
 
-# Could not dump table "coins" because of following StandardError
-#   Unknown type 'ineteger' for column 'miner_id'
+  create_table "coins", force: :cascade do |t|
+    t.string "name", default: "Bitcoin"
+    t.string "symbol", default: "BTC"
+    t.float "difficulty", default: 0.0
+    t.float "amount", default: 0.0
+    t.float "price", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "wallet_id"
+    t.string "api_url", default: "https://api.cryptonator.com/api/ticker/btc-usd"
+    t.float "block_reward", default: 12.5
+  end
 
   create_table "energy_packs", force: :cascade do |t|
     t.integer "size", default: 15600

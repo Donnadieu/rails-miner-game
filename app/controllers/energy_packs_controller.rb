@@ -6,7 +6,7 @@ class EnergyPacksController < ApplicationController
   end
 
   def create
-    if current_user.balance >= 30.00
+    if current_user.balance >= 100.00
       @energy_pack = EnergyPack.create
       current_user.energy = current_user.energy + @energy_pack.size
       current_user.balance = current_user.balance - @energy_pack.price
