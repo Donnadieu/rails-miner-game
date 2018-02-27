@@ -14,7 +14,7 @@ class MiningRigsController < ApplicationController
       @miner = @mining_rig.miners.last
       if enough_balance?(@miner.price)
         @miner.consumption = @miner.get_consumption
-        current_user.balance = current_user.balance - @miner.price
+        current_user.balance -= @miner.price
         @miner.save
         current_user.save
 
@@ -45,7 +45,7 @@ class MiningRigsController < ApplicationController
         redirect_to edit_user_mining_rig_path(current_user)
       else
         @miner.consumption = @miner.get_consumption
-        current_user.balance = current_user.balance - @miner.price
+        current_user.balance -= @miner.price
         @miner.save
         current_user.save
         flash[:message] = 'Mining Rig succesfully updated'

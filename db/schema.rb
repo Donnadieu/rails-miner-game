@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227005847) do
+ActiveRecord::Schema.define(version: 20180227015605) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name", default: "Bitcoin"
@@ -25,9 +25,24 @@ ActiveRecord::Schema.define(version: 20180227005847) do
     t.float "block_reward", default: 12.5
   end
 
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
   create_table "energy_packs", force: :cascade do |t|
     t.integer "size", default: 15600
-    t.float "price", default: 30.0
+    t.float "price", default: 100.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image", default: "https://boygeniusreport.files.wordpress.com/2017/02/battery.jpg?quality=98&strip=all&w=300"

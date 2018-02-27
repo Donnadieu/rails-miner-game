@@ -35,9 +35,12 @@ class Miner < ApplicationRecord
   end
 
   def start_mining(coin)
-    binding.pry
-    coin.update_difficulty
-    coin.update_price
+    x = coin.block_reward * hash_rate * 86400.00
+    y = coin.difficulty * 2**32
 
+    new_amount = x/y
+    coin.amount += new_amount
+    coin.save
   end
+  handle_asynchronously :start_mining, :run_at => Proc.new { 1.minutes.from_now }
 end

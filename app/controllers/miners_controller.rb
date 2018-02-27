@@ -6,10 +6,11 @@ class MinersController < ApplicationController
 
     if enough_energy?(@miner)
       @miner.start_mining(@coin)
+      flash[:message] = 'Great come back in 24 hours to see your BTC'
     else
       flash[:message] = "You don't have enough Energy"
-      redirect_to user_mining_rig_path(current_user)
     end
+    redirect_to user_mining_rig_path(current_user)
   end
 
 
