@@ -36,6 +36,7 @@ class Miner < ApplicationRecord
   end
 
   def start_mining(coin)
-    binding.pry
+    coin.update_difficulty
+    coin.update_price
   end
 end

@@ -1,5 +1,5 @@
 class Wallet < ApplicationRecord
-  has_many :coins
+  has_one :coin
   belongs_to :user
 
   def self.create_address

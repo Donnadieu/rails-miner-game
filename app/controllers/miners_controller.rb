@@ -2,7 +2,7 @@ class MinersController < ApplicationController
   def update
     # binding.pry
     @miner = set_miner
-    @coin = current_user.coins.last
+    @coin = current_user.wallet.coin
 
     if enough_energy?(@miner)
       @miner.start_mining(@coin)
