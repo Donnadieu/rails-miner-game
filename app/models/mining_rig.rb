@@ -19,6 +19,11 @@ class MiningRig < ApplicationRecord
     miners.count
   end
 
+  def change_status
+    self.status = true
+    save
+  end
+
   private
 
   def miners_count_limit
