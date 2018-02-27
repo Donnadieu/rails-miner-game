@@ -1,6 +1,5 @@
 class MinersController < ApplicationController
   def update
-    # binding.pry
     @miner = set_miner
     @coin = current_user.wallet.coin
 

@@ -21,4 +21,16 @@ class ApplicationController < ActionController::Base
   def enough_energy?(miner)
     current_user.energy >= miner.day_consumption
   end
+
+  def sell_coin(coin, amount)
+    if coin.amount >= amount
+      coin.amount -= coin.amount
+      current_user.balance = current_user.balance + (amount * coin.price)
+      coin.save
+      current_user.save
+    else
+      flash[:message] = "You do not have enough #{coin.name}"
+    end
+    redirect_to user_wallet_path(coin.wallet.id, current_user.id)
+  end
 end

@@ -15,14 +15,13 @@ ActiveRecord::Schema.define(version: 20180227015605) do
   create_table "coins", force: :cascade do |t|
     t.string "name", default: "Bitcoin"
     t.string "symbol", default: "BTC"
-    t.float "difficulty", default: 0.0
-    t.float "amount", default: 0.0
-    t.float "price", default: 0.0
+    t.decimal "difficulty", default: "0.0"
+    t.decimal "amount", default: "0.0"
+    t.decimal "price", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wallet_id"
-    t.string "api_url", default: "https://api.cryptonator.com/api/ticker/btc-usd"
-    t.float "block_reward", default: 12.5
+    t.float "block_reward", default: 1250000000.0
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -42,15 +41,15 @@ ActiveRecord::Schema.define(version: 20180227015605) do
 
   create_table "energy_packs", force: :cascade do |t|
     t.integer "size", default: 15600
-    t.float "price", default: 100.0
+    t.decimal "price", default: "100.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image", default: "https://boygeniusreport.files.wordpress.com/2017/02/battery.jpg?quality=98&strip=all&w=300"
   end
 
   create_table "miners", force: :cascade do |t|
-    t.float "consumption", default: 0.0
-    t.float "hash_rate", default: 0.0
+    t.decimal "consumption", default: "0.0"
+    t.decimal "hash_rate", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -87,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180227015605) do
     t.string "uid"
     t.string "image"
     t.integer "energy", default: 0
-    t.float "balance", default: 2000.0
+    t.decimal "balance", default: "2000.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

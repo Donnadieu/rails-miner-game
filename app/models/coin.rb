@@ -5,12 +5,12 @@ class Coin < ApplicationRecord
   validates :price, numericality: true
 
   def update_price
-    url = api_url
+    url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     parsed_page = JSON.parse(response)
-    self.price = parsed_page["ticker"]["price"] unless !parsed_page["success"]
-    self.save
+    self.price = parsed_page['bpi']['USD']['rate_float']
+    save
   end
 
   def total_usd

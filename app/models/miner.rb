@@ -5,14 +5,14 @@ class Miner < ApplicationRecord
   validates :consumption, numericality: true
   validates :hash_rate, presence: true
   validates_numericality_of :hash_rate, greater_than: 0
-  validates_inclusion_of :hash_rate, in: [7, 14, 28]
+  validates_inclusion_of :hash_rate, in: [14, 28, 56]
 
   def price
-    if hash_rate == 28
+    if hash_rate == 56
       1000.00
-    elsif hash_rate == 14
+    elsif hash_rate == 28
       500.00
-    elsif hash_rate == 7
+    elsif hash_rate == 14
       250.00
     else
       0
@@ -21,11 +21,11 @@ class Miner < ApplicationRecord
 
   def get_consumption
     case hash_rate
-    when 28
+    when 56
       2600
-    when 14
+    when 28
       1300
-    when 7
+    when 14
       650
     end
   end
@@ -35,12 +35,14 @@ class Miner < ApplicationRecord
   end
 
   def start_mining(coin)
+    coin.update_price
+    coin.update_difficulty
     x = coin.block_reward * hash_rate * 86400.00
     y = coin.difficulty * 2**32
 
-    new_amount = x/y
+    new_amount = (x / y) * 10000.00
     coin.amount += new_amount
     coin.save
   end
-  handle_asynchronously :start_mining, :run_at => Proc.new { 1.minutes.from_now }
+  # handle_asynchronously :start_mining, :run_at => Proc.new { 1.minutes.from_now }
 end
