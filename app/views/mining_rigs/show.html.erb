@@ -2,5 +2,8 @@
 
 <%= div_for @miners do |miner| %>
   <%= render partial: 'miners/miner', locals: {miner: miner} %>
-  <%= render partial: 'miners/form', locals: {miner: miner} %>
+  <%= form_for [current_user, miner] do |f| %>
+    <%= f.submit 'Start Mining' %>
+    <p>(Note: By default mining time 24hrs)</p>
+  <% end %>
 <% end %>

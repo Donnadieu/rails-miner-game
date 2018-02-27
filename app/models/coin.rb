@@ -1,5 +1,6 @@
 class Coin < ApplicationRecord
   belongs_to :wallet
+  belongs_to :miner
   validates :difficulty, numericality: true
   validates :amount, numericality: true
   validates :price, numericality: true
@@ -17,7 +18,7 @@ class Coin < ApplicationRecord
     amount * price.to_f
   end
 
-  def update_price
+  def update_difficulty
     url = 'https://blockchain.info/q/getdifficulty'
     uri = URI(url)
     response = Net::HTTP.get(uri)

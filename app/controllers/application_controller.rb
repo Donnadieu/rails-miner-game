@@ -18,4 +18,7 @@ class ApplicationController < ActionController::Base
   def enough_balance?(price)
     current_user.balance >= price
   end
+  def enough_energy?(miner)
+    current_user.energy >= miner.day_consumption
+  end
 end

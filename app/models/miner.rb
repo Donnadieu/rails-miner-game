@@ -1,6 +1,7 @@
 class Miner < ApplicationRecord
   has_many :mining_rig_miners
   has_many :mining_rigs, through: :mining_rig_miners
+  has_one :coin
 
   validates :consumption, numericality: true
   validates :hash_rate, presence: true
@@ -30,8 +31,11 @@ class Miner < ApplicationRecord
     end
   end
 
-  def start_mining
-    
+  def day_consumption
+    consumption * 24
   end
 
+  def start_mining(coin)
+    binding.pry
+  end
 end
