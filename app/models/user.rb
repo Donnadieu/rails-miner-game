@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one :wallet
   has_one :coin, through: :wallet
   has_many :mining_rigs
+  has_many :miners, through: :mining_rigs
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -20,5 +21,9 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def self.highest_balance
+    order(balance: :desc)
   end
 end

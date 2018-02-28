@@ -6,4 +6,8 @@ class UsersController < ApplicationController
 
   def show
   end
+
+  def highest_balance
+    @users = User.highest_balance
+  end
 end

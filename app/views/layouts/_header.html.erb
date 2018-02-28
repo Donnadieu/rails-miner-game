@@ -3,6 +3,7 @@
       <% if user_signed_in? %>
         <li> <%= link_to "Profile", user_path(current_user) %> </li>
         <li> <%= link_to "Mining Rigs", user_mining_rigs_path(current_user) %></li>
+        <li> <%= link_to "Rank", highest_balance_path %></li>
         <li> <%= link_to "Get More Energy", energy_packs_path %> </li>
         <li> <%= link_to "Wallet", user_wallet_path(current_user.wallet.id, current_user) %> </li>
         <li> <%= link_to "Log out", destroy_user_session_path, :method => :delete unless !user_signed_in? %> </li>

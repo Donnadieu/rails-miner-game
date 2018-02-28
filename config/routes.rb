@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :energy_packs
   resources :coins
+  get '/users/highest_balance', to: 'users#highest_balance', as: 'highest_balance'
 
   resources :users do
     resources :wallets, only: [:show, :update]

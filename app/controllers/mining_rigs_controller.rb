@@ -1,6 +1,7 @@
 class MiningRigsController < ApplicationController
   def index
     @mining_rigs = current_user.mining_rigs
+    
   end
 
   def new

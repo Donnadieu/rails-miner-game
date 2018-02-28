@@ -1,6 +1,7 @@
 class Miner < ApplicationRecord
   has_many :mining_rig_miners
   has_many :mining_rigs, through: :mining_rig_miners
+  belongs_to :user
 
   validates :consumption, numericality: true
   validates :hash_rate, presence: true
