@@ -41,4 +41,12 @@ module ApplicationHelper
     miners.each { |miner| total_e += miner.day_consumption }
     total_e
   end
+
+  def buy_energy_pack
+    energy_pack = EnergyPack.create
+    current_user.energy = current_user.energy + energy_pack.size
+    current_user.balance = current_user.balance - energy_pack.price
+    current_user.save
+    energy_pack
+  end
 end
