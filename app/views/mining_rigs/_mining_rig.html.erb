@@ -4,6 +4,10 @@
 <p>Total Miners consumption: W</p>
 <p>Total Miners hash rate: TH/s</p>
 
+<% if mining_rig.status %>
+  <p>Mining Rig currently mining...</p>
+<% else %>
+  <p><%= button_to 'Start Mining', "/mining_rig/#{mining_rig.id}/miners", {method: 'patch'} %></p>
+<% end %>
 
 <p><%= button_to 'Edit', edit_user_mining_rig_path(current_user.id, mining_rig), {method: 'get'} %></p>
-<p><%= button_to 'Start Mining' %></p>

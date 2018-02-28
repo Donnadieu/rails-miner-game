@@ -1,11 +1,11 @@
 class MinersController < ApplicationController
   def update
-    @miner = set_miner
-    @coin = current_user.wallet.coin
+    @mining_rig = MiningRig.find(params[:id])
+    @miners = @mining_rig.miners
+    @mining_rig.change_status
 
-    if enough_energy?(@miner)
-      @miner.start_mining(@coin)
-      # @miner.change_status
+    if enough_energy?(@miners)
+      start_mining(@miners)
       flash[:message] = 'Great your miner have started mining come back in 24 hours to see your BTC'
     else
       flash[:message] = "You don't have enough Energy"
@@ -18,9 +18,5 @@ class MinersController < ApplicationController
 
   def miner_params
     params.require(:miner).permit(:id, :user_id)
-  end
-
-  def set_miner
-    Miner.find(params[:id])
   end
 end

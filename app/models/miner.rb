@@ -34,16 +34,7 @@ class Miner < ApplicationRecord
     consumption * 24
   end
 
-  def change_status
-    if status
-      self.status = false
-    else
-      self.status = true
-    end
-    save
-  end
-
-  def start_mining(coin)
+  def mining(coin)
     coin.update_price
     coin.update_difficulty
     x = coin.block_reward * hash_rate * 86400.00
@@ -52,7 +43,7 @@ class Miner < ApplicationRecord
     new_amount = (x / y) * 10000.00
     coin.amount += new_amount
     coin.save
+    save
   end
-  handle_asynchronously :start_mining, :run_at => Proc.new { 1.minutes.from_now }
-  handle_asynchronously :change_status, :run_at => Proc.new { 1.minutes.from_now }
+  # handle_asynchronously :mining, :run_at => Proc.new { 1.minutes.from_now }
 end

@@ -20,7 +20,11 @@ class MiningRig < ApplicationRecord
   end
 
   def change_status
-    self.status = true
+    if status
+      self.status = false
+    else
+      self.status = true
+    end
     save
   end
 
@@ -30,4 +34,5 @@ class MiningRig < ApplicationRecord
     return if miners.blank?
     errors.add(:miners, 'Limit reached') if miners.size > 5
   end
+  # handle_asynchronously :change_status, :run_at => Proc.new { 1.minutes.from_now }
 end

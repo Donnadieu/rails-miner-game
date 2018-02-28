@@ -1,8 +1,0 @@
-<%= form_for [current_user, miner] do |f| %>
-  <% if !miner.status %>
-    <%= f.submit 'Start Mining' %>
-    <p>(Note: By default mining time 24hrs)</p>
-  <% else %>
-    <p>Currently Mining...</p>
-  <% end %>
-<% end %>

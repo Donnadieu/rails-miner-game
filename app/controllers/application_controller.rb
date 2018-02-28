@@ -18,8 +18,13 @@ class ApplicationController < ActionController::Base
   def enough_balance?(price)
     current_user.balance >= price
   end
-  def enough_energy?(miner)
-    current_user.energy >= miner.day_consumption
+
+  def enough_energy?(miners)
+    total_e = 0
+    miners.each do |miner|
+      total_e += miner.day_consumption
+    end
+    current_user.energy >= total_e
   end
 
   def sell_coin(coin, amount)
@@ -32,5 +37,10 @@ class ApplicationController < ActionController::Base
       flash[:message] = "You do not have enough #{coin.name}"
     end
     redirect_to user_wallet_path(coin.wallet.id, current_user.id)
+  end
+
+  def start_mining(miners)
+    coin = current_user.wallet.coin
+    miners.each { |miner| miner.mining(coin) }
   end
 end
