@@ -22,14 +22,18 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "omb_loginForm") do |f| %>
 
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <div class="input-group-addon">
+	          <span class="glyphicon glyphicon-envelope"></span>
+          </div>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", required: 'required', class: "form-control", placeholder: "email address" %>
         </div>
 
         <span class="help-block"></span>
 
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <div class="input-group-addon">
+	          <span class="glyphicon glyphicon-lock"></span>
+          </div>
           <%= f.password_field :password, autocomplete: "off", required: 'true', class: "form-control", placeholder: "password" %>
         </div>
 

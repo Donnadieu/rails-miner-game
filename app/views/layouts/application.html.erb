@@ -9,12 +9,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
   </head>
     <body class="bg">
       <%= render 'layouts/header' %>
-      <div class="container">
+      <div  id="main" class="container clear-top">
         <%= render 'layouts/message' %>
         <%= yield %>
       </div>
+      <%= render 'layouts/footer' %>
   </body>
 </html>

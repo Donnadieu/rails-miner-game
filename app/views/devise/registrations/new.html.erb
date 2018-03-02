@@ -1,5 +1,5 @@
 <div class="omb_login">
-  <h3 class="omb_authTitle">Sign Up</h3>
+  <h3 class="omb_authTitle"> Welcome Plese Sign Up</h3>
   <div class="row omb_row-sm-offset-3 omb_socialButtons">
     <div class="col-xs-6 col-sm">
       <a href="<%= user_facebook_omniauth_authorize_path %>" class="btn btn-lg btn-block omb_btn-facebook">
@@ -24,14 +24,18 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "omb_loginForm") do |f| %>
 
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <div class="input-group-addon">
+	          <span class="glyphicon glyphicon-user"></span>
+          </div>
           <%= f.text_field :username, autofocus: true, required: "required", class: "form-control", placeholder: 'username' %>
         </div>
 
         <span class="help-block"></span>
 
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <div class="input-group-addon">
+	          <span class="glyphicon glyphicon-envelope"></span>
+          </div>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", required: 'required', class: "form-control", placeholder: "email address" %>
         </div>
 
@@ -41,14 +45,18 @@
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <div class="input-group-addon">
+	          <span class="glyphicon glyphicon-lock"></span>
+          </div>
           <%= f.password_field :password, autocomplete: "off", required: 'true', class: "form-control", placeholder: "password" %>
         </div>
 
         <span class="help-block"></span>
 
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <div class="input-group-addon">
+	          <span class="glyphicon glyphicon-lock"></span>
+          </div>
           <%= f.password_field :password, autocomplete: "off", required: 'true', class: "form-control", placeholder: "confirm password" %>
         </div>
 
