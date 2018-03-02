@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Miner's Game</title>
-    <%= csrf_meta_tags %>
 
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Miner's Game</title>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/message' %>
-    <%= yield %>
+    <body class="bg">
+      <%= render 'layouts/header' %>
+      <div class="container">
+        <%= render 'layouts/message' %>
+        <%= yield %>
+      </div>
   </body>
 </html>

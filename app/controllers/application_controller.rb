@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   def index
-    redirect_to '/users'
+    # redirect_to '/users'
+    render 'layouts/application'
   end
 end

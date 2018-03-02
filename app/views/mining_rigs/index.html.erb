@@ -1,11 +1,8 @@
+<br><br>
+
 <% if current_user.mining_rigs.empty? %>
   <h1>You do not have any mining rigs click below to create a new one</h1>
 <% else %>
   <h1>Your mining rigs</h1>
 <% end %>
-
 <%= render @mining_rigs %>
-
-<br></br>
-
-<%= link_to 'New Mining Rig', new_user_mining_rig_path %>

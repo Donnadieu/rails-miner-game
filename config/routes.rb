@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   get '/', to: 'users#index'
   patch '/mining_rig/:id/miners', to: 'miners#update'
+  get '/users/highest_balance', to: 'users#highest_balance', as: 'highest_balance'
 
   resources :energy_packs
   resources :coins
-  get '/users/highest_balance', to: 'users#highest_balance', as: 'highest_balance'
+
 
   resources :users do
     resources :wallets, only: [:show, :update]

@@ -1,3 +1,10 @@
 <% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: 'field_with_errors' %>
+  <div class="alert alert-<%= key %>">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+    <ul>
+      <li>
+        <%= value %>
+      </li>
+    </ul>
+  </div>
 <% end %>
