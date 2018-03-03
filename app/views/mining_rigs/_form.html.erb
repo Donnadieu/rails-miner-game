@@ -1,23 +1,44 @@
-<h1>Mining Rig of <%= current_user.username %></h1>
+<form class="form-horizontal">
+  <fieldset>
+    <legend><strong>Mining Rig of <%= current_user.username %></strong></legend>
+    <%= form_for [current_user, mining_rig] do |f| %>
+      <div class="form-group">
+        <%= f.label 'Mining Rig', class: 'col-md-4 control-label' %>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">Name:</span>
+            <%= f.text_field :name, required: "required", class: 'form-control', placeholder: 'Antyhing you want' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md col-md-offset-4">
+          <h3>Create a new Miner for this Mining Rig</h3>
 
-<%= form_for [current_user, mining_rig] do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, required: "required" %>
+          <p><%= number_to_currency(1000) %>USD, will get you 56TH/s</p>
+          <p><%= number_to_currency(500) %>USD, will get you 28TH/s</p>
+          <p><%= number_to_currency(250) %>USD, will get you 14TH/s</p>
+      </div><br>
+      <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
+        <div class="form-group">
+          <%= miners_fields.label 'Hash rate', class: 'col-md-4 control-label' %>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">Hash Rate:</span>
+              <%= miners_fields.number_field :hash_rate, required: "required", class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="button1id">Create</label>
+        <div class="col-md-8">
+          <%= f.button class: "btn btn-success", method: 'post', action: 'create', controller: 'mining_rigs'  %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+</form>
 
-  <h3>Create a new Miner for this Mining Rig:</h3>
-
-  <p><%= number_to_currency(1000) %>USD, will get you 56TH/s</p>
-  <p><%= number_to_currency(500) %>USD, will get you 28TH/s</p>
-  <p><%= number_to_currency(250) %>USD, will get you 14TH/s</p>
-
-  <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
-    <%= miners_fields.label :hash_rate %>
-    <%= miners_fields.number_field :hash_rate, required: "required" %>
-  <% end %>
-
-  <br></br>
-
-  <%= f.submit %>
 
   <h3>Total number of Miners: <%= mining_rig.total_miners %></h3>
 
@@ -28,4 +49,3 @@
       <%= render partial: 'miners/miner', locals: {miner: miner} %>
     <% end %>
   <% end %>
-<% end %>
