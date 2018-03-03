@@ -1,8 +1,13 @@
-<br><br>
-
 <% if current_user.mining_rigs.empty? %>
   <h1>You do not have any mining rigs click below to create a new one</h1>
 <% else %>
-  <h1>Your mining rigs</h1>
+  <div class="container">
+      <div class="row">
+        <ul class="thumbnails list-unstyled">
+          <%= content_tag_for(:li, @mining_rigs, class: 'col-md-3') do |mining_rig| %>
+            <%= render partial: 'mining_rig', locals: {mining_rig: mining_rig} %>
+          <% end %>
+        </ul>
+      </div>
+  </div>
 <% end %>
-<%= render @mining_rigs %>

@@ -27,6 +27,18 @@ class MiningRig < ApplicationRecord
     save
   end
 
+  def total_cosumption
+    total = 0
+    miners.each{ |miner| total += miner.consumption }
+    total
+  end
+
+  def total_hashrate
+    total = 0
+    miners.each{ |miner| total += miner.hash_rate }
+    total
+  end
+
   private
 
   def miners_count_limit

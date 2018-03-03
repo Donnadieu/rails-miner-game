@@ -10,9 +10,9 @@ class MinersController < ApplicationController
       current_user.energy -= total_energy(@miners)
       current_user.save
 
-      flash[:message] = 'Great your miner have started mining come back in 24 hours to see your BTC'
+      flash[:success] = 'Great your miner have started mining come back in 24 hours to see your BTC'
     else
-      flash[:message] = "You don't have enough Energy"
+      flash[:error] = "You don't have enough Energy"
     end
     redirect_to user_mining_rigs_path(current_user)
   end

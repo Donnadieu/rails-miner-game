@@ -8,9 +8,9 @@ class EnergyPacksController < ApplicationController
   def create
     if current_user.balance >= 100.00
       @energy_pack = buy_energy_pack
-      flash[:message] = "You succesfully purchased energy!!"
+      flash[:success] = 'You succesfully purchased energy!'
     else
-      flash[:message] = "You do not have enough balance!!"
+      flash[:error] = 'You do not have enough balance!'
     end
     redirect_to energy_packs_path
   end

@@ -1,13 +1,18 @@
-<h3>Name: <%= link_to mining_rig.name, user_mining_rig_path(current_user.id, mining_rig) %></h3>
-
-<p>Total miners: <%= mining_rig.total_miners %></p>
-<p>Total Miners consumption: W</p>
-<p>Total Miners hash rate: TH/s</p>
-
-<% if mining_rig.status %>
-  <p>Mining Rig currently mining...</p>
-<% else %>
-  <p><%= button_to 'Start Mining', "/mining_rig/#{mining_rig.id}/miners", {method: 'patch'} %></p>
-<% end %>
-
-<p><%= button_to 'Edit', edit_user_mining_rig_path(current_user.id, mining_rig), {method: 'get'} %></p>
+<div class="thumbnail" style="padding: 0">
+  <div class="caption">
+    <h2><%= link_to mining_rig.name, user_mining_rig_path(current_user.id, mining_rig) %></h2>
+    <% if mining_rig.status %>
+      <p>Mining Rig currently mining...</p>
+    <% else %>
+      <%= button_to 'Start Mining', "/mining_rig/#{mining_rig.id}/miners", {method: 'patch', class: 'btn btn-primary btn-sm'} %>
+    <% end %>
+  </div>
+  <div class="modal-footer" style="text-align: center">
+    <div class="row">
+      <div class="col-md-4"><b><%= mining_rig.total_miners %></b><br/><small>Miners</small></div>
+      <div class="col-md-4"><b><%= mining_rig.total_cosumption %>W/Hr</b><br/><small>Consumption</small></div>
+      <div class="col-md-4"><b><%= mining_rig.total_hashrate %>TH/s</b><br/><small>Hashrate</small></div>
+    </div>
+    <%= button_to 'Edit', edit_user_mining_rig_path(current_user.id, mining_rig), {method: 'get', class: 'btn btn-primary btn-sm'} %>
+  </div>
+</div>

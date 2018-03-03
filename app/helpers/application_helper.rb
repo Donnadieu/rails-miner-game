@@ -25,8 +25,9 @@ module ApplicationHelper
       current_user.balance = current_user.balance + (amount * coin.price)
       coin.save
       current_user.save
+      flash[:success] = 'You successfully sold BTC'
     else
-      flash[:message] = "You do not have enough #{coin.name}"
+      flash[:error] = "You do not have enough #{coin.name}"
     end
     redirect_to user_wallet_path(coin.wallet.id, current_user.id)
   end

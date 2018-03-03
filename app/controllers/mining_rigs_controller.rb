@@ -1,7 +1,7 @@
 class MiningRigsController < ApplicationController
   def index
     @mining_rigs = current_user.mining_rigs
-    
+
   end
 
   def new
@@ -19,10 +19,10 @@ class MiningRigsController < ApplicationController
         @miner.save
         current_user.save
 
-        flash[:message] = 'You succesfully created a Miner for your Mining Rig'
+        flash[:success] = 'You succesfully created a Miner for your Mining Rig'
         redirect_to user_mining_rigs_path(current_user)
       else
-        flash[:message] = 'You do not have enough balance'
+        flash[:error] = 'You do not have enough balance'
         render :new
       end
     else
@@ -42,18 +42,18 @@ class MiningRigsController < ApplicationController
     if @mining_rig.update(mining_rig_params)
       @miner = @mining_rig.miners.last
       if !enough_balance?(@miner.price)
-        flash[:message] = 'You do not have enough balance'
+        flash[:error] = 'You do not have enough balance'
         redirect_to edit_user_mining_rig_path(current_user)
       else
         @miner.consumption = @miner.get_consumption
         current_user.balance -= @miner.price
         @miner.save
         current_user.save
-        flash[:message] = 'Mining Rig succesfully updated'
+        flash[:success] = 'Mining Rig succesfully updated'
         redirect_to user_mining_rigs_path(current_user)
       end
     else
-      flash[:message] = @mining_rig.errors.full_messages.to_sentence
+      flash[:error] = @mining_rig.errors.full_messages.to_sentence
       redirect_to edit_user_mining_rig_path(current_user)
     end
   end
