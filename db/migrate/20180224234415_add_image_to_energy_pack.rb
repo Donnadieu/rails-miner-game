@@ -1,5 +1,5 @@
 class AddImageToEnergyPack < ActiveRecord::Migration[5.1]
   def change
-    add_column :energy_packs, :image, :string, default: "https://boygeniusreport.files.wordpress.com/2017/02/battery.jpg?quality=98&strip=all&w=300"
+    add_column :energy_packs, :image, :string, default: "https://orig00.deviantart.net/e2bc/f/2011/071/d/9/battery_icon_by_guitarcraze-d3bguey.png"
   end
 end

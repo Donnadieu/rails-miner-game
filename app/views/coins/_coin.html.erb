@@ -1,11 +1,15 @@
-<p><%= coin.name %>: <%= coin.amount %></p>
+<strong><%= coin.name %>: <%= coin.amount %><span class="glyphicon glyphicon-bitcoin"></span></strong>
+
+<br><br>
+
+
 
 <% if coin.amount != 0 %>
 
   <%= form_for coin do |f| %>
-    <%= f.submit 'Sell Coin' %>
-    <%= f.label :amount %>
+    <%= f.label 'Amount:' %>
     <%= f.text_field :amount%>
+    <%= f.submit 'Sell Coin', class: 'btn btn-success btn-sm' %>
   <% end %>
-  
+
 <% end %>

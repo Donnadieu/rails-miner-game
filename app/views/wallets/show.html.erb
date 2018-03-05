@@ -1,3 +1,9 @@
-<h1>Wallet</h1>
-<h4>Address: <%= @wallet.address %></h4>
-<%= render @coin %>
+<div class="row text-center">
+  <div class="wallet">
+    <h1>Wallet</h1>
+    <h4><strong>Address:</strong> <%= @wallet.address %></h4>
+  </div>
+
+  <br><br>
+  <%= render @coin %>
+</div>

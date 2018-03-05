@@ -1,9 +1,11 @@
-<%= div_for @energy_pack do %>
+<div class="row text-center">
+  <%= div_for @energy_pack do %>
 
-  <%= render 'energy_pack' %>
+    <%= render 'energy_pack' %>
 
-  <%= form_for @energy_pack do |f| %>
-    <%= f.submit "Buy Pack" %>
+    <%= form_for @energy_pack do |f| %>
+      <%= f.submit 'Buy Energy Pack', class: 'btn btn-success btn-sm' %>
+    <% end %>
+
   <% end %>
-  
-<% end %>
+</div>
