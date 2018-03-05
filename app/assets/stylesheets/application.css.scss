@@ -237,12 +237,6 @@ fieldset > legend > strong {
 #miner{
   color: #337ab7;
 }
-.table{
-  color: white;
-}
-.energy_pack {
-  color: white
-}
-.wallet {
+.table, .energy_pack, .wallet, #title > h1{
   color: white;
 }

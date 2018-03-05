@@ -1,5 +1,9 @@
+<div class="row text-center" id='title'>
+  <h1>Miner's Game</h1>
+</div>
+
 <div class="omb_login">
-  <h3 class="omb_authTitle">Login or <%= link_to 'Sign up', new_user_registration_path %></h3>
+  <h3 class="omb_authTitle">Login or <strong><%= link_to 'Sign up', new_user_registration_path %></strong></h3>
   <div class="row omb_row-sm-offset-3 omb_socialButtons">
     <div class="col-xs-6 col-sm">
       <a href="<%= user_facebook_omniauth_authorize_path %>" class="btn btn-lg btn-block omb_btn-facebook">
