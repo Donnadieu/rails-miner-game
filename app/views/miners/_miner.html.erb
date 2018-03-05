@@ -1,3 +1,11 @@
-<h3>Mine ID: <%= miner.id %></h3>
-<p>Miner Consumption: <%= miner.consumption %>W</p>
-<p>Miner Hash Rate: <%= miner.hash_rate %>TH/s</p>
+<div class="thumbnail" style="padding: 0">
+  <div class="caption" id="miner">
+    <h3>Miner ID: <%= miner.id %></h3>
+  </div>
+  <div class="modal-footer" style="text-align: center">
+    <div class="row">
+      <p>Miner Consumption: <%= miner.consumption %>W</p>
+      <p>Miner Hash Rate: <%= miner.hash_rate %>TH/s</p>
+    </div>
+  </div>
+</div>

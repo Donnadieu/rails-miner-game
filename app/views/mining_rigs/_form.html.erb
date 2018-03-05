@@ -1,7 +1,6 @@
-<form class="form-horizontal">
+<%= form_for [current_user, mining_rig], html: {  class: 'form-horizontal' } do |f| %>
   <fieldset>
     <legend><strong>Mining Rig of <%= current_user.username %></strong></legend>
-    <%= form_for [current_user, mining_rig] do |f| %>
       <div class="form-group">
         <%= f.label 'Mining Rig', class: 'col-md-4 control-label' %>
         <div class="col-md-4">
@@ -11,6 +10,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md col-md-offset-4">
           <h3>Create a new Miner for this Mining Rig</h3>
 
@@ -18,7 +18,9 @@
           <p><%= number_to_currency(500) %>USD, will get you 28TH/s</p>
           <p><%= number_to_currency(250) %>USD, will get you 14TH/s</p>
       </div><br>
+
       <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
+      <%= miners_fields.hidden_field :user_id, value: current_user.id %>
         <div class="form-group">
           <%= miners_fields.label 'Hash rate', class: 'col-md-4 control-label' %>
           <div class="col-md-4">
@@ -29,23 +31,13 @@
           </div>
         </div>
       <% end %>
+
       <div class="form-group">
         <label class="col-md-4 control-label" for="button1id">Create</label>
         <div class="col-md-8">
-          <%= f.button class: "btn btn-success", method: 'post', action: 'create', controller: 'mining_rigs'  %>
+          <%= f.submit class: 'btn btn-success btn-sm' %>
         </div>
       </div>
     <% end %>
   </fieldset>
 </form>
-
-
-  <h3>Total number of Miners: <%= mining_rig.total_miners %></h3>
-
-  <br></br>
-
-  <%= div_for miners do |miner| %>
-    <% if !miner.id.nil? %>
-      <%= render partial: 'miners/miner', locals: {miner: miner} %>
-    <% end %>
-  <% end %>

@@ -4,6 +4,7 @@ class MiningRig < ApplicationRecord
   has_many :miners, through: :mining_rig_miners
 
   validates_presence_of :name, on: :create
+  validates :name, uniqueness: true
   validates_presence_of :miners, on: :create, message: 'is invalid'
   validate :miners_count_limit, on: :update
   validates_presence_of :miners

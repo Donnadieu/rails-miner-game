@@ -1,175 +1,40 @@
 <form class="form-horizontal">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Resource Form</legend>
-
-<!-- Prepended text-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="">Resource Title</label>
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon">T i t l e:</span>
-      <input id="" name="" class="form-control" placeholder="Make sure your title makes sense..." type="text">
-    </div>
-
-  </div>
-</div>
-
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textarea">Resource Body</label>
-  <div class="col-md-4">
-    <textarea class="form-control" id="textarea" name="textarea">Describe your resource... </textarea>
-  </div>
-</div>
-
-<!-- Prepended checkbox -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="prependedcheckbox">Web Links</label>
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon">
-          <input type="checkbox">
-      </span>
-      <input id="prependedcheckbox" name="prependedcheckbox" class="form-control" type="text" placeholder="Check the box and place your citations here...">
-    </div>
-
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="subject">Subject</label>
-  <div class="col-md-4">
-    <select id="subject" name="subject" class="form-control">
-      <option value="Language Arts">Language Arts</option>
-      <option value="Mathematics">Mathematics</option>
-      <option value="Science">Science</option>
-      <option value="Health">Health</option>
-      <option value="Handwriting">Handwriting</option>
-      <option value="Physical Education (P.E.)">Physical Education (P.E.)</option>
-      <option value="Art">Art</option>
-      <option value="Music">Music</option>
-      <option value="Instrumental Music – specific instrument">Instrumental Music – specific instrument</option>
-      <option value="Movement or Eurythmy">Movement or Eurythmy</option>
-      <option value="Handwork or handcrafts">Handwork or handcrafts</option>
-      <option value="Life Lab or gardening">Life Lab or gardening</option>
-      <option value="Dramatics">Dramatics</option>
-      <option value="Dance">Dance</option>
-      <option value="French">French</option>
-      <option value="Spanish">Spanish</option>
-      <option value="Leadership">Leadership</option>
-      <option value="Special Education Day Class">Special Education Day Class</option>
-      <option value="Resource Program">Resource Program</option>
-      <option value="Speech">Speech</option>
-      <option value="Adaptive P.E.">Adaptive P.E.</option>
-      <option value="Occupational Therapy">Occupational Therapy</option>
-    </select>
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectbasic">Level of Difficulty</label>
-  <div class="col-md-4">
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="Grade 1">Grade 1</option>
-      <option value="Grade 2">Grade 2</option>
-      <option value="Grade 3">Grade 3</option>
-      <option value="Grade 4">Grade 4</option>
-      <option value="Grade 5">Grade 5</option>
-      <option value="Grade 6">Grade 6</option>
-      <option value="Grade 7">Grade 7</option>
-      <option value="Grade 8">Grade 8</option>
-      <option value="Grade 9">Grade 9</option>
-      <option value="Grade 10">Grade 10</option>
-      <option value="Grade 11">Grade 11</option>
-      <option value="Grade 12">Grade 12</option>
-      <option value="Post-Secondary">Post-Secondary</option>
-    </select>
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectbasic">Region</label>
-  <div class="col-md-4">
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="Alberta">Alberta</option>
-      <option value="British Columbia">British Columbia</option>
-      <option value="Manitoba">Manitoba</option>
-      <option value="New Brunswick">New Brunswick</option>
-      <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-      <option value="Northwest Territories">Northwest Territories</option>
-      <option value="Nova Scotia">Nova Scotia</option>
-      <option value="Nunavut">Nunavut</option>
-      <option value="Ontario">Ontario</option>
-      <option value="Prince Edward Island">Prince Edward Island</option>
-      <option value="Quebec">Quebec</option>
-      <option value="Saskatchewan">Saskatchewan</option>
-      <option value="Yukon">Yukon</option>
-    </select>
-  </div>
-</div>
-
-<!-- Multiple Radios -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="radios">Resource's Privacy</label>
-  <div class="col-md-4">
-  <div class="radio">
-    <label for="radios-0">
-      <input type="radio" name="radios" id="radios-0" value="Public" checked="checked">
-      Public (available to main domains)
-    </label>
-	</div>
-  <div class="radio">
-    <label for="radios-1">
-      <input type="radio" name="radios" id="radios-1" value="Private">
-      Private (google can't find your resource)
-    </label>
-	</div>
-  </div>
-</div>
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="add_file_button"></label>
-  <div class="col-md-4">
-    <button id="add_file_button" name="add_file_button" class="btn btn-primary">+ Add another file</button>
-  </div>
-</div>
-
-<!-- File Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="filebutton">Resource File</label>
-  <div class="col-md-4">
-    <input id="filebutton" name="filebutton" class="input-file" type="file">
-  </div>
-</div>
-
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="button1id">Manage: </label>
-  <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success">Share</button>
-    <button id="Delete" name="Delete" class="btn btn-danger">Delete</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-
-<%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
-  <div class="form-group">
-    <%= miners_fields.label 'Hash rate', class: 'col-md-4 control-label' %>
-    <div class="col-md-4">
-      <div class="input-group">
-        <span class="input-group-addon">Hash Rate:</span>
-        <%= miners_fields.number_field :hash_rate, required: "required", class: 'form-control' %>
+  <fieldset>
+    <legend><strong>Mining Rig of <%= current_user.username %></strong></legend>
+    <%= form_for [current_user, mining_rig] do |f| %>
+      <div class="form-group">
+        <%= f.label 'Mining Rig', class: 'col-md-4 control-label' %>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">Name:</span>
+            <%= f.text_field :name, required: "required", class: 'form-control', placeholder: 'Antyhing you want' %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <%= miners_fields.label :hash_rate %>
-  <%= miners_fields.number_field :hash_rate, required: "required" %>
-<% end %>
+      <div class="col-md col-md-offset-4">
+          <h3>Create a new Miner for this Mining Rig</h3>
+
+          <p><%= number_to_currency(1000) %>USD, will get you 56TH/s</p>
+          <p><%= number_to_currency(500) %>USD, will get you 28TH/s</p>
+          <p><%= number_to_currency(250) %>USD, will get you 14TH/s</p>
+      </div><br>
+      <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
+        <div class="form-group">
+          <%= miners_fields.label 'Hash rate', class: 'col-md-4 control-label' %>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">Hash Rate:</span>
+              <%= miners_fields.number_field :hash_rate, required: "required", class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="button1id">Create</label>
+        <div class="col-md-8">
+          <%= f.submit  %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+</form>

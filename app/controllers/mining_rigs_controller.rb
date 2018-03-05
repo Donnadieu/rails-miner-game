@@ -26,7 +26,7 @@ class MiningRigsController < ApplicationController
         render :new
       end
     else
-      flash[:message] = @mining_rig.errors.full_messages.to_sentence
+      flash[:error] = @mining_rig.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -66,7 +66,7 @@ class MiningRigsController < ApplicationController
   private
 
   def mining_rig_params
-    params.require(:mining_rig).permit(:name, :user_id, :miners_attributes => [:hash_rate])
+    params.require(:mining_rig).permit(:name, :user_id, :miners_attributes => [:hash_rate, :user_id])
   end
 
   def set_mining_rig
