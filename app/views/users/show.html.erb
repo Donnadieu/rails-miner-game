@@ -20,7 +20,7 @@
 					<%= button_to 'Get More', energy_packs_path, class: 'btn btn-info btn-block', method: 'get' %>
 				</div>
 				<div class="col-xs-12 col-sm-4 emphasis">
-					<h2><strong>43</strong></h2>
+					<h2><strong><%= current_user.miners.count %></strong></h2>
 					<p><small>Total Miners</small></p>
 					<%= button_to 'Mining Rigs', user_mining_rigs_path(current_user), class: 'btn btn-primary btn-block', method: 'get' %>
 				</div>
