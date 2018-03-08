@@ -30,8 +30,8 @@ em, .col-xs-12 {
   color: white;
 }
 
-h1  {
-  color: black;
+h1, h2, #new_mining_rig > fieldset > legend > strong{
+  color: white;
 }
 
 }
@@ -239,4 +239,8 @@ fieldset > legend > strong {
 }
 .table, .energy_pack, .wallet, #title > h1{
   color: white;
+}
+
+#main > div > h4 > strong{
+  color: black;
 }

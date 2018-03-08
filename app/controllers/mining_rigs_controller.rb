@@ -66,7 +66,7 @@ class MiningRigsController < ApplicationController
   private
 
   def mining_rig_params
-    params.require(:mining_rig).permit(:name, :user_id, :miners_attributes => [:hash_rate, :user_id])
+    params.require(:mining_rig).permit(:name, :user_id, miners_attributes: [:hash_rate, :user_id])
   end
 
   def set_mining_rig
