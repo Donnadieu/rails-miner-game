@@ -8,7 +8,7 @@ class MiningRigMiner < ApplicationRecord
   validates_inclusion_of :hash_rate, in: [14, 28, 56]
 
   def hash_rate
-      self.miner.hash_rate if self.miner
+    self.miner.hash_rate if self.miner
   end
 
   def hash_rate=(hash_rate)

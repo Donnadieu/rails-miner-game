@@ -1,4 +1,4 @@
-# My Favorite Eats ##
+# My Miner's Game ##
 
 This app will allow you simulate a Bitcoin mining operation just for fun.
 

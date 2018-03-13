@@ -14,6 +14,14 @@ class MinersController < ApplicationController
     redirect_to user_mining_rigs_path(current_user)
   end
 
+  # def mining
+  #   @miner = Miner.find(params[:id])
+  #   @coin = Coin.last
+  #   @miner.mining(@coin)
+  #   flash[:success] = 'Great your miner have started mining come back in 24 hours to see your BTC'
+  #   redirect_to user_mining_rigs_path(current_user)
+  # end
+
 
   private
 
