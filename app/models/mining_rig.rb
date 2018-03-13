@@ -4,13 +4,17 @@ class MiningRig < ApplicationRecord
   has_many :miners, through: :mining_rig_miners
 
   validates_presence_of :name, on: :create
-  validates_presence_of :miners, on: :create, message: 'is invalid'
+  validates_presence_of :mining_rig_miners, on: :create, message: 'are invalid'
   validate :miners_count_limit, on: :update
-  validates_presence_of :miners
+  validates_presence_of :mining_rig_miners
 
-  def miners_attributes=(miners_attributes)
-    miners_attributes.each_value do |miner_attributes|
-      miners.build(miner_attributes)
+  def mining_rig_miners_attributes=(mining_rig_miners_attributes)
+    mining_rig_miners_attributes.each_value do |mining_rig_miners_attribute|
+      if !mining_rig_miners_attribute[:hash_rate].empty?
+        miner = Miner.create(hash_rate: mining_rig_miners_attribute[:hash_rate])
+        mining_rig_miner = self.mining_rig_miners.find_or_initialize_by(miner: miner)
+        mining_rig_miner.update(mining_rig_miners_attribute)
+      end
     end
   end
 

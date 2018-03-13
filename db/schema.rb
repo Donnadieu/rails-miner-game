@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305200318) do
+ActiveRecord::Schema.define(version: 20180313014309) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name", default: "Bitcoin"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20180305200318) do
     t.integer "miner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "brand"
   end
 
   create_table "mining_rigs", force: :cascade do |t|

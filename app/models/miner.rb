@@ -1,12 +1,9 @@
 class Miner < ApplicationRecord
   has_many :mining_rig_miners
   has_many :mining_rigs, through: :mining_rig_miners
-  belongs_to :user
+  # belongs_to :user
 
   validates :consumption, numericality: true
-  validates :hash_rate, presence: true
-  validates_numericality_of :hash_rate, greater_than: 0
-  validates_inclusion_of :hash_rate, in: [14, 28, 56]
 
   def price
     if hash_rate == 56

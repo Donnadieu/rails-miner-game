@@ -19,14 +19,24 @@
           <p><%= number_to_currency(250) %>USD, will get you 14TH/s</p>
       </div><br>
 
-      <%= f.fields_for :miners, mining_rig.miners.build do |miners_fields| %>
-      <%= miners_fields.hidden_field :user_id, value: current_user.id %>
+      <%= f.fields_for :mining_rig_miners, @mining_rig_miner do |mining_rig_miners_fields| %>
+
         <div class="form-group">
-          <%= miners_fields.label 'Hash rate', class: 'col-md-4 control-label' %>
+          <%= mining_rig_miners_fields.label 'hash rate', class: 'col-md-4 control-label' %>
           <div class="col-md-4">
             <div class="input-group">
               <span class="input-group-addon">Hash Rate:</span>
-              <%= miners_fields.number_field :hash_rate, required: "required", class: 'form-control' %>
+              <%= mining_rig_miners_fields.number_field :hash_rate, required: "required", class: 'form-control', placeholder: 'Choose from the options above' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= mining_rig_miners_fields.label 'brand', class: 'col-md-4 control-label' %>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">Brand:</span>
+              <%= mining_rig_miners_fields.text_field :brand, required: "required", class: 'form-control', placeholder: 'The brand name for this miner' %>
             </div>
           </div>
         </div>

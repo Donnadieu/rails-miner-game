@@ -5,12 +5,12 @@ class MiningRigsController < ApplicationController
   end
 
   def new
-    @mining_rig = MiningRig.new
+    @mining_rig = current_user.mining_rigs.build
+    @mining_rig_miner = @mining_rig.mining_rig_miners.build
   end
 
   def create
     @mining_rig = current_user.mining_rigs.build(mining_rig_params)
-
     if @mining_rig.save
       @miner = @mining_rig.miners.last
       if enough_balance?(@miner.price)
@@ -33,12 +33,11 @@ class MiningRigsController < ApplicationController
 
   def edit
     @mining_rig = set_mining_rig
-    @miners = @mining_rig.miners
+    @mining_rig_miner = @mining_rig.mining_rig_miners.build
   end
 
   def update
     @mining_rig = set_mining_rig
-
     if @mining_rig.update(mining_rig_params)
       @miner = @mining_rig.miners.last
       if !enough_balance?(@miner.price)
@@ -60,13 +59,13 @@ class MiningRigsController < ApplicationController
 
   def show
     @mining_rig = set_mining_rig
-    @miners = @mining_rig.miners
+    @mining_rig_miners = @mining_rig.mining_rig_miners
   end
 
   private
 
   def mining_rig_params
-    params.require(:mining_rig).permit(:name, :user_id, miners_attributes: [:hash_rate, :user_id])
+    params.require(:mining_rig).permit(:name, :user_id, mining_rig_miners_attributes: [:hash_rate, :brand])
   end
 
   def set_mining_rig

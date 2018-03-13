@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_one :wallet
   has_one :coin, through: :wallet
   has_many :mining_rigs
-  has_many :miners, through: :mining_rigs
+  # has_many :miners, through: :mining_rigs
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -26,4 +26,13 @@ class User < ApplicationRecord
   def self.highest_balance
     order(balance: :desc)
   end
+
+  def total_miners
+    total = 0
+    mining_rigs.each do |mining_rig|
+      total += mining_rig.total_miners
+    end
+    total
+  end
+
 end
