@@ -38,6 +38,7 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'record_tag_helper', '~> 1.0'
 gem 'jquery-rails'
+gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
