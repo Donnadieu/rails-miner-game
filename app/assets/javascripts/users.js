@@ -5,7 +5,7 @@ $(document).ready(function() {
     var url = `/users/${id}/mining_rigs`
 
     $.get(url, function(response){
-      debugger
+      $("#main").html(response)
     })
   })
 })
