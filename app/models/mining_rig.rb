@@ -10,6 +10,7 @@ class MiningRig < ApplicationRecord
 
   def mining_rig_miners_attributes=(mining_rig_miners_attributes)
     mining_rig_miners_attributes.each_value do |mining_rig_miners_attribute|
+      binding.pry
       if !mining_rig_miners_attribute[:hash_rate].empty?
         miner = Miner.create(hash_rate: mining_rig_miners_attribute[:hash_rate])
         mining_rig_miner = self.mining_rig_miners.find_or_initialize_by(miner: miner)

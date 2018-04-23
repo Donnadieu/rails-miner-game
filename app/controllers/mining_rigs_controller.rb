@@ -19,9 +19,9 @@ class MiningRigsController < ApplicationController
 
     if enough_balance?(hash_rate)
       if @mining_rig.save
-        @miner.consumption = @miner.get_consumption
-        current_user.balance -= @miner.price
-        @miner.save
+        miner = @mining_rig.miners.last
+
+        current_user.balance -= miner.price
         current_user.save
 
         flash[:success] = 'You succesfully created a Miner for your Mining Rig'
@@ -44,15 +44,17 @@ class MiningRigsController < ApplicationController
 
   def update
     @mining_rig = set_mining_rig
+    hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
+
     if @mining_rig.update(mining_rig_params)
       @miner = @mining_rig.miners.last
-      if !enough_balance?(@miner.price)
+      binding.pry
+      if !enough_balance?(hash_rate)
         flash[:error] = 'You do not have enough balance'
         redirect_to edit_user_mining_rig_path(current_user)
       else
-        @miner.consumption = @miner.get_consumption
+        @miner = @mining_rig.miners.last
         current_user.balance -= @miner.price
-        @miner.save
         current_user.save
         flash[:success] = 'Mining Rig succesfully updated'
         redirect_to user_mining_rigs_path(current_user)

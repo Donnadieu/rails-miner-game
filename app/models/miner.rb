@@ -17,14 +17,14 @@ class Miner < ApplicationRecord
     end
   end
 
-  def get_consumption
+  def consumption
     case hash_rate
     when 56
-      2600
+      self.consumption = 2600
     when 28
-      1300
+      self.consumption = 1300
     when 14
-      650
+      self.consumption = 650
     end
   end
 

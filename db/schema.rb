@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20180313014309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "status", default: false
-    t.integer "user_id"
   end
 
   create_table "mining_rig_miners", force: :cascade do |t|
