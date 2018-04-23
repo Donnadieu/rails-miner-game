@@ -3,7 +3,7 @@ class MiningRigsController < ApplicationController
     @mining_rigs = current_user.mining_rigs
 
     respond_to do |format|
-      format.html { render 'index', layout: false }
+      format.html { render 'index'}
       format.json { render json: @mining_rigs, status: 200}
     end
   end
@@ -15,9 +15,10 @@ class MiningRigsController < ApplicationController
 
   def create
     @mining_rig = current_user.mining_rigs.build(mining_rig_params)
-    if @mining_rig.save
-      @miner = @mining_rig.miners.last
-      if enough_balance?(@miner.price)
+    hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
+
+    if enough_balance?(hash_rate)
+      if @mining_rig.save
         @miner.consumption = @miner.get_consumption
         current_user.balance -= @miner.price
         @miner.save
@@ -25,12 +26,13 @@ class MiningRigsController < ApplicationController
 
         flash[:success] = 'You succesfully created a Miner for your Mining Rig'
         redirect_to user_mining_rigs_path(current_user)
+
       else
-        flash[:error] = 'You do not have enough balance'
+        flash[:error] = @mining_rig.errors.full_messages.to_sentence
         render :new
       end
     else
-      flash[:error] = @mining_rig.errors.full_messages.to_sentence
+      flash[:error] = 'You do not have enough balance'
       render :new
     end
   end

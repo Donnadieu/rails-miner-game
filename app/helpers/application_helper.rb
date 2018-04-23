@@ -7,7 +7,10 @@ module ApplicationHelper
     end
   end
 
-  def enough_balance?(price)
+  def enough_balance?(hash_rate)
+    @miner = Miner.new(hash_rate: hash_rate)
+    price = @miner.price
+  
     current_user.balance >= price
   end
 
