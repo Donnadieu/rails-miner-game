@@ -2,10 +2,7 @@ class MiningRigsController < ApplicationController
   def index
     @mining_rigs = current_user.mining_rigs
 
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @mining_rigs, status: 200 }
-    end
+    render 'index', layout: false
   end
 
   def new
