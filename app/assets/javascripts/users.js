@@ -14,13 +14,13 @@ $(document).ready(function() {
           <li class="mining_rig col-md-3" id="mining_rig_${mining_rig.id}">
             <div class="thumbnail" style="padding: 0">
               <div class="caption">
-                <h2><a href="/users/1/mining_rigs/7">gukhgkgh</a></h2>
-                <form class="button_to" method="post" action="/mining_rig/7/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="8iLjAQvDTSM/4pme3ZSun+ttZxiiLC+1xUAwEx7qaaIGW3DYsoyAiCe9tFK8pLO+5XlkKHGDVGZEZEAa80oqFw=="></form>
+                <h2><a href="/users/${mining_rig.user.id}/mining_rigs/${mining_rig.id}">${mining_rig.name}</a></h2>
+                <form class="button_to" method="post" action="/mining_rig/${mining_rig.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="8iLjAQvDTSM/4pme3ZSun+ttZxiiLC+1xUAwEx7qaaIGW3DYsoyAiCe9tFK8pLO+5XlkKHGDVGZEZEAa80oqFw=="></form>
                 <small>(Mining time: 24hrs by default)</small>
               </div>
               <div class="modal-footer" style="text-align: center">
               <div class="row">
-                <div class="col-md-4"><b>1</b><br><small>Miners</small></div>
+                <div class="col-md-4"><b>${mining_rig.miners.length}</b><br><small>Miners</small></div>
                 <div class="col-md-4"><b>2600.0W/Hr</b><br><small>Consumption</small></div>
                 <div class="col-md-4"><b>56.0TH/s</b><br><small>Hashrate</small></div>
               </div>
