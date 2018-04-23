@@ -48,7 +48,7 @@ class MiningRigsController < ApplicationController
 
     if @mining_rig.update(mining_rig_params)
       @miner = @mining_rig.miners.last
-      binding.pry
+
       if !enough_balance?(hash_rate)
         flash[:error] = 'You do not have enough balance'
         redirect_to edit_user_mining_rig_path(current_user)
