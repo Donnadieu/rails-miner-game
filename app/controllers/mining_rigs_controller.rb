@@ -1,4 +1,5 @@
 class MiningRigsController < ApplicationController
+  before_action :set_mining_rig, only: [:edit, :update, :show]
   def index
     @mining_rigs = current_user.mining_rigs
 
@@ -39,12 +40,10 @@ class MiningRigsController < ApplicationController
   end
 
   def edit
-    @mining_rig = set_mining_rig
     @mining_rig_miner = @mining_rig.mining_rig_miners.build
   end
 
   def update
-    @mining_rig = set_mining_rig
     hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
 
     if @mining_rig.update(mining_rig_params)
@@ -67,8 +66,12 @@ class MiningRigsController < ApplicationController
   end
 
   def show
-    @mining_rig = set_mining_rig
     @mining_rig_miners = @mining_rig.mining_rig_miners
+
+    respond_to do |format|
+      format.html { render 'show'}
+      format.json { render json: @mining_rig_miners, status: 200}
+    end
   end
 
   private
@@ -78,6 +81,6 @@ class MiningRigsController < ApplicationController
   end
 
   def set_mining_rig
-    MiningRig.find(params[:id])
+    @mining_rig = MiningRig.find(params[:id])
   end
 end

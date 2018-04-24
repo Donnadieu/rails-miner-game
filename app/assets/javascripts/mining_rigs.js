@@ -19,8 +19,10 @@ $(function() {
       renderMiningRigs(miningRigs)
     })
   })
-  $(document).unbind('click').on('click', '#mining_rig_name', function(event) {
-    event.preventDefault()
-    alert("You clicked")
-  })
+  // $(document).unbind('click').on('click', '#mining_rig_name', function(event) {
+  //   event.preventDefault()
+  //   var  url = this.href
+  //
+  //   debugger
+  // })
 })
