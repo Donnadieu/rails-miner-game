@@ -2,7 +2,7 @@
 
   <div class="caption">
     <h2><%= link_to mining_rig.name, user_mining_rig_path(current_user.id, mining_rig) %></h2>
-    <% if miners_mining?(mining_rig.miners) %>
+    <% if mining_rig.status %>
       <p>Mining Rig currently mining...</p>
     <% else %>
       <%= button_to 'Start Mining', "/mining_rig/#{mining_rig.id}/miners", {method: 'patch', class: 'btn btn-primary btn-sm'} %>

@@ -18,6 +18,10 @@ class MiningRig < ApplicationRecord
     end
   end
 
+  def status
+    miners.any?{ |miner| miner.status == true }
+  end
+
   def total_miners
     miners.count
   end

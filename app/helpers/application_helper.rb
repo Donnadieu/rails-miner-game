@@ -65,8 +65,4 @@ module ApplicationHelper
       miner.save
     end
   end
-
-  def miners_mining?(miners)
-    miners.any?{ |miner| miner.status == true}
-  end
 end

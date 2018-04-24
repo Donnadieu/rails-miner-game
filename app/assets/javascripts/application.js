@@ -68,7 +68,10 @@ function renderMiningRigIndex (userId) {
 function renderMiningRigs(miningRigs, authenticity_token) {
   miningRigs.forEach(function(miningRig) {
     var newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
+
     debugger
+    minersMining(newRig.miners)
+
     $("#mining_rig_list").append(`
       <li class="mining_rig col-md-3" id="mining_rig_${newRig.id}">
         <div class="thumbnail" style="padding: 0">
@@ -83,5 +86,11 @@ function renderMiningRigs(miningRigs, authenticity_token) {
         </div>
       </div>
     </li>`)
+  })
+}
+
+function minersMining(miners) {
+  return miners.every(function(miner) {
+    miner.status === true
   })
 }
