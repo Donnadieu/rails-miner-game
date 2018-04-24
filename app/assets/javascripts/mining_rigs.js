@@ -28,14 +28,14 @@ MiningRig.prototype.renderInfo = function () {
           </div>`)
 }
 MiningRig.prototype.totalConsumption = function () {
-  var total = 0
+  let total = 0
   this.miners.forEach(function(miner) {
     total += parseFloat(miner.consumption)
   })
   return total
 }
 MiningRig.prototype.totalHashRate = function () {
-  var total = 0
+  let total = 0
   this.miners.forEach(function(miner) {
     total += parseFloat(miner.hash_rate)
   })
@@ -55,7 +55,7 @@ function renderMiningRigIndex (userId) {
 
 function renderMiningRigs(miningRigs, authenticity_token) {
   miningRigs.forEach(function(miningRig) {
-    var newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
+    const newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
 
     $("#mining_rig_list").append(`
       <li class="mining_rig col-md-3" id="mining_rig_${newRig.id}">
@@ -75,8 +75,8 @@ function renderMiningRigs(miningRigs, authenticity_token) {
 $(function() {
   $('#new_mining_rig').unbind("submit").on('submit', function(event) {
     event.preventDefault()
-    var url = this.attributes.action.value
-    var data = {
+    const url = this.attributes.action.value
+    const data = {
       'authenticity_token': this.elements['authenticity_token'].value,
       'mining_rig': {
         'name': $('#mining_rig_name').val(),

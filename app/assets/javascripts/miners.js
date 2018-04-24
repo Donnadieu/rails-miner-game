@@ -31,13 +31,13 @@ function renderMinerIndex() {
 
 $(document).unbind('click').on('click', '#mining_rig_name', function(event) {
   event.preventDefault()
-  var  url = `${this.href}.json`
+  const  url = `${this.href}.json`
 
   $.get(url, function(miners) {
     $('#main').html(renderMinerIndex())
 
     miners.forEach(function(miner) {
-      var newMiner = new Miner(miner.id, miner.consumption, miner.hash_rate, miner.status, miner.mining_rig_miners[0].brand)
+      const newMiner = new Miner(miner.id, miner.consumption, miner.hash_rate, miner.status, miner.mining_rig_miners[0].brand)
 
       $('#miners_list').append(`
         <li class="mining_rig_miner col-md-3" id="mining_rig_miner_${newMiner.id}">
