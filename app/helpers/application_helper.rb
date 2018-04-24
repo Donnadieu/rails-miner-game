@@ -10,7 +10,7 @@ module ApplicationHelper
   def enough_balance?(hash_rate)
     @miner = Miner.new(hash_rate: hash_rate)
     price = @miner.price
-  
+
     current_user.balance >= price
   end
 
@@ -38,6 +38,7 @@ module ApplicationHelper
   def start_mining(miners)
     coin = current_user.wallet.coin
     miners.each { |miner| miner.mining(coin) }
+
   end
 
   def total_energy(miners)
@@ -52,5 +53,20 @@ module ApplicationHelper
     current_user.balance = current_user.balance - energy_pack.price
     current_user.save
     energy_pack
+  end
+
+  def change_status(miners)
+    miners.each do |miner|
+      if miner.status
+        miner.status = false
+      else
+        miner.status = true
+      end
+      miner.save
+    end
+  end
+
+  def miners_mining?(miners)
+    miners.any?{ |miner| miner.status == true}
   end
 end

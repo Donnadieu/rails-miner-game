@@ -6,22 +6,13 @@ class MinersController < ApplicationController
 
     if enough_energy?(@miners)
       start_mining(@miners)
-      @mining_rig.change_status
+      change_status(@miners)
       flash[:success] = 'Great your miner have started mining come back in 24 hours to see your BTC'
     else
       flash[:error] = "You don't have enough Energy"
     end
     redirect_to user_mining_rigs_path(current_user)
   end
-
-  # def mining
-  #   @miner = Miner.find(params[:id])
-  #   @coin = Coin.last
-  #   @miner.mining(@coin)
-  #   flash[:success] = 'Great your miner have started mining come back in 24 hours to see your BTC'
-  #   redirect_to user_mining_rigs_path(current_user)
-  # end
-
 
   private
 

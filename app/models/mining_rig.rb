@@ -49,5 +49,5 @@ class MiningRig < ApplicationRecord
     return if miners.blank?
     errors.add(:miners, 'Limit reached') if miners.size > 5
   end
-  # handle_asynchronously :change_status, :run_at => Proc.new { 1.minutes.from_now }
+  handle_asynchronously :change_status, :run_at => Proc.new { 1.minutes.from_now }
 end
