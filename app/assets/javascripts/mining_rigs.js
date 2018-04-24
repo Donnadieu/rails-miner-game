@@ -1,19 +1,22 @@
 $(function() {
   $('#new_mining_rig').unbind("submit").on('submit', function(event) {
-    // event.preventDefault()
-
+    event.preventDefault()
+    var url = this.attributes.action.value
     var data = {
-      'authenticity_token': 'RnpPAaQYaOJMbZAR9cUocjVmwuahrjauu/9+3eM+Bt969rpTIf+bbdu8Y3VGWUxsqgxCnITKk00UH3B1iZlL+Q==',
+      'authenticity_token': this.elements['authenticity_token'].value,
       'mining_rig': {
-        'name': '56156151',
+        'name': $('#mining_rig_name').val(),
         'mining_rig_miners_attributes': {
           '0':{
-            'hash_rate': '28',
-            'brand': "Omar's Brand"
+            'hash_rate': $('#mining_rig_mining_rig_miners_attributes_0_hash_rate').val(),
+            'brand': $('#mining_rig_mining_rig_miners_attributes_0_brand').val()
           }
         }
       }
     }
-    
+    $.post(url, data, function(miningRigs) {
+      $("#main").html(renderMiningRigIndex(miningRigs[0].user.id))
+      renderMiningRigs(miningRigs)
+    })
   })
 })
