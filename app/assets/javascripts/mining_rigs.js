@@ -19,4 +19,8 @@ $(function() {
       renderMiningRigs(miningRigs)
     })
   })
+  $(document).unbind('click').on('click', '#mining_rig_name', function(event) {
+    event.preventDefault()
+    alert("You clicked")
+  })
 })

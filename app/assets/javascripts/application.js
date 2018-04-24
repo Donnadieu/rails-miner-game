@@ -24,7 +24,7 @@ function MiningRig(id, name, status, miners, userId) {
   this.userId = userId
 }
 MiningRig.prototype.renderName = function () {
-  return(`<h2><a href="/users/${this.userId}/mining_rigs/${this.id}">${this.name}</a></h2>`)
+  return(`<h2><a id="mining_rig_name" href="/users/${this.userId}/mining_rigs/${this.id}">${this.name}</a></h2>`)
 }
 MiningRig.prototype.renderSartMiningButton = function (authenticity_token) {
   if (!this.status) {
@@ -90,7 +90,3 @@ function renderMiningRigs(miningRigs, authenticity_token) {
     </li>`)
   })
 }
-
-$(function() {
-  
-})
