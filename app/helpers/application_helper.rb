@@ -38,13 +38,13 @@ module ApplicationHelper
   def start_mining(miners)
     coin = current_user.wallet.coin
     miners.each { |miner| miner.mining(coin) }
-
   end
 
-  def total_energy(miners)
+  def update_energy(miners)
     total_e = 0
     miners.each { |miner| total_e += miner.day_consumption }
-    total_e
+    current_user.energy -= total_e
+    current_user.save
   end
 
   def buy_energy_pack
@@ -64,6 +64,7 @@ module ApplicationHelper
       end
       miner.save
     end
+    binding.pry
   end
 
   def miners_mining?(miners)

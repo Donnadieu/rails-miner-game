@@ -4,7 +4,7 @@
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav navbar-right">
           <li role="presentation"> <%= link_to "Profile", user_path(current_user) %> </li>
-          <li role="presentation"> <%= link_to "Mining Rigs", user_mining_rigs_path(current_user), id: "mining-rigs-header", "data-id": current_user.id %></li>
+          <li role="presentation"> <%= link_to "Mining Rigs", user_mining_rigs_path(current_user), id: "mining-rigs-header", "data-id": current_user.id, authenticity_token: form_authenticity_token %></li>
           <li role="presentation"> <%= link_to "Rank", highest_balance_path %></li>
           <li role="presentation"> <%= link_to "Get More Energy", energy_packs_path %> </li>
           <li role="presentation"> <%= link_to "Wallet", user_wallet_path(current_user.wallet.id, current_user) %> </li>

@@ -4,10 +4,11 @@ $(document).ready(function() {
     event.preventDefault()
     var userId = event.target.dataset.id
     var url = `/users/${userId}/mining_rigs.json`
+    var authenticity_token = this.attributes.authenticity_token.value
 
-    $.get(url, function(miningRigs){
+    $.get(url, authenticity_token, function(miningRigs){
       $("#main").html(renderMiningRigIndex(userId))
-      renderMiningRigs(miningRigs)
+      renderMiningRigs(miningRigs, authenticity_token)
     })
   })
 })

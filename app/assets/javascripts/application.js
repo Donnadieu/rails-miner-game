@@ -26,8 +26,8 @@ function MiningRig(id, name, status, miners, userId) {
 MiningRig.prototype.renderName = function () {
   return(`<h2><a href="/users/${this.userId}/mining_rigs/${this.id}">${this.name}</a></h2>`)
 }
-MiningRig.prototype.renderSartMiningButton = function () {
-  return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="8iLjAQvDTSM/4pme3ZSun+ttZxiiLC+1xUAwEx7qaaIGW3DYsoyAiCe9tFK8pLO+5XlkKHGDVGZEZEAa80oqFw=="></form>`)
+MiningRig.prototype.renderSartMiningButton = function (authenticity_token) {
+  return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="${authenticity_token}"></form>`)
 }
 MiningRig.prototype.renderEditButton = function () {
   return(`<form class="button_to" method="get" action="/users/${this.userId}/mining_rigs/${this.id}/edit"><input class="btn btn-primary btn-sm" type="submit" value="Edit"></form>`)
@@ -65,7 +65,7 @@ function renderMiningRigIndex (userId) {
         `)
 }
 
-function renderMiningRigs(miningRigs) {
+function renderMiningRigs(miningRigs, authenticity_token) {
   miningRigs.forEach(function(miningRig) {
     var newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
 
@@ -74,7 +74,7 @@ function renderMiningRigs(miningRigs) {
         <div class="thumbnail" style="padding: 0">
           <div class="caption">
             ${newRig.renderName()}
-            ${newRig.renderSartMiningButton()}
+            ${newRig.renderSartMiningButton(authenticity_token)}
             <small>(Mining time: 24hrs by default)</small>
           </div>
           <div class="modal-footer" style="text-align: center">

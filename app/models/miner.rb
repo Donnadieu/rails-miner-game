@@ -37,7 +37,7 @@ class Miner < ApplicationRecord
     coin.update_difficulty
     x = coin.block_reward * hash_rate * 86400.00
     y = coin.difficulty * 2**32
-
+    binding.pry
     new_amount = (x / y) * 10000.00
     coin.amount += new_amount
     coin.save
