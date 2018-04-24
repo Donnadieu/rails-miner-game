@@ -42,5 +42,5 @@ class Miner < ApplicationRecord
     coin.save
     save
   end
-  handle_asynchronously :mining, :run_at => Proc.new { 1.minutes.from_now }
+  handle_asynchronously :mining, :run_at => Proc.new { 5.minutes.from_now }
 end

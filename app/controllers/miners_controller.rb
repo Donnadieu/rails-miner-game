@@ -7,6 +7,7 @@ class MinersController < ApplicationController
     if enough_energy?(@miners)
       start_mining(@miners)
       change_status(@miners)
+      @mining_rig.change_status
       update_energy(@miners)
       flash[:success] = 'Great your miner have started mining come back in 24 hours to see your BTC'
     else
