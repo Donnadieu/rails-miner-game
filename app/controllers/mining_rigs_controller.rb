@@ -66,6 +66,7 @@ class MiningRigsController < ApplicationController
   end
 
   def show
+    binding.pry
     @mining_rig_miners = @mining_rig.mining_rig_miners
 
     respond_to do |format|
