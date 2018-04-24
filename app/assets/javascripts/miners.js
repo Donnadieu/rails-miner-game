@@ -1,21 +1,22 @@
-function Miner(id, consumption, hash_rate, status, brand ) {
-  this.id = id
-  this.consumption = consumption
-  this.hash_rate = hash_rate
-  this.status = status
-  this.brand = brand
-}
+class Miner {
+  constructor(id, consumption, hash_rate, status, brand){
+    this.id = id
+    this.consumption = consumption
+    this.hash_rate = hash_rate
+    this.status = status
+    this.brand = brand
+  }
 
-Miner.prototype.renderId = function() {
-  return(`<h3>Miner ID: ${this.id}</h3>`)
-}
-
-Miner.prototype.renderInfo =function() {
-  return(`
-    <p>Miner Consumption: ${this.consumption}W</p>
-    <p>Miner Hash Rate: ${this.hash_rate}TH/s</p>
-    <p>Miner Brand: ${this.brand}</p>
-    `)
+  renderId(){
+    return(`<h3>Miner ID: ${this.id}</h3>`)
+  }
+  renderInfo(){
+    return(`
+      <p>Miner Consumption: ${this.consumption}W</p>
+      <p>Miner Hash Rate: ${this.hash_rate}TH/s</p>
+      <p>Miner Brand: ${this.brand}</p>
+      `)
+  }
 }
 
 function renderMinerIndex() {
