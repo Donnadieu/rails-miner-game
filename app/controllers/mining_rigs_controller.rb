@@ -14,27 +14,28 @@ class MiningRigsController < ApplicationController
   end
 
   def create
-    @mining_rig = current_user.mining_rigs.build(mining_rig_params)
-    hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
-
-    if enough_balance?(hash_rate)
-      if @mining_rig.save
-        miner = @mining_rig.miners.last
-
-        current_user.balance -= miner.price
-        current_user.save
-
-        flash[:success] = 'You succesfully created a Miner for your Mining Rig'
-        redirect_to user_mining_rigs_path(current_user)
-
-      else
-        flash[:error] = @mining_rig.errors.full_messages.to_sentence
-        render :new
-      end
-    else
-      flash[:error] = 'You do not have enough balance'
-      render :new
-    end
+    binding.pry
+    # @mining_rig = current_user.mining_rigs.build(mining_rig_params)
+    # hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
+    #
+    # if enough_balance?(hash_rate)
+    #   if @mining_rig.save
+    #     miner = @mining_rig.miners.last
+    #
+    #     current_user.balance -= miner.price
+    #     current_user.save
+    #
+    #     flash[:success] = 'You succesfully created a Miner for your Mining Rig'
+    #     redirect_to user_mining_rigs_path(current_user)
+    #
+    #   else
+    #     flash[:error] = @mining_rig.errors.full_messages.to_sentence
+    #     render :new
+    #   end
+    # else
+    #   flash[:error] = 'You do not have enough balance'
+    #   render :new
+    # end
   end
 
   def edit
