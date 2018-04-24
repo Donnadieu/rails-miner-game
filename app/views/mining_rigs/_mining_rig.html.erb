@@ -1,7 +1,7 @@
 <div class="thumbnail" style="padding: 0">
 
   <div class="caption">
-    <h2><%= link_to mining_rig.name, user_mining_rig_path(current_user.id, mining_rig) %></h2>
+    <h2><%= link_to mining_rig.name, user_mining_rig_path(current_user.id, mining_rig), id: 'mining_rig_name' %></h2>
     <% if mining_rig.status %>
       <p>Mining Rig currently mining...</p>
     <% else %>

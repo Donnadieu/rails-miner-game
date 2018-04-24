@@ -90,3 +90,7 @@ function renderMiningRigs(miningRigs, authenticity_token) {
     </li>`)
   })
 }
+
+$(function() {
+  
+})
