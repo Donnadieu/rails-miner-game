@@ -27,7 +27,13 @@ MiningRig.prototype.renderName = function () {
   return(`<h2><a href="/users/${this.userId}/mining_rigs/${this.id}">${this.name}</a></h2>`)
 }
 MiningRig.prototype.renderSartMiningButton = function (authenticity_token) {
-  return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="${authenticity_token}"></form>`)
+  if (!this.status) {
+    return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="${authenticity_token}"></form>
+            <small>(Mining time: 24hrs by default)</small>
+          `)
+  } else {
+    return(`<p>Mining Rig currently mining...</p>`)
+  }
 }
 MiningRig.prototype.renderEditButton = function () {
   return(`<form class="button_to" method="get" action="/users/${this.userId}/mining_rigs/${this.id}/edit"><input class="btn btn-primary btn-sm" type="submit" value="Edit"></form>`)
@@ -36,7 +42,7 @@ MiningRig.prototype.renderInfo = function () {
   return(`<div class="row">
             <div class="col-md-4"><b>${this.miners.length}</b><br><small>Miners</small></div>
             <div class="col-md-4"><b>${this.totalConsumption()}W/Hr</b><br><small>Consumption</small></div>
-            <div class="col-md-4"><b>${this.totalHashRate()}TH/s</b><br><small>Hashrate</small></div>
+            <div class="col-md-4"><b>${this.totalHashRate()}.0TH/s</b><br><small>Hashrate</small></div>
           </div>`)
 }
 MiningRig.prototype.totalConsumption = function () {
@@ -69,28 +75,18 @@ function renderMiningRigs(miningRigs, authenticity_token) {
   miningRigs.forEach(function(miningRig) {
     var newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
 
-    debugger
-    minersMining(newRig.miners)
-
     $("#mining_rig_list").append(`
       <li class="mining_rig col-md-3" id="mining_rig_${newRig.id}">
         <div class="thumbnail" style="padding: 0">
           <div class="caption">
             ${newRig.renderName()}
             ${newRig.renderSartMiningButton(authenticity_token)}
-            <small>(Mining time: 24hrs by default)</small>
           </div>
           <div class="modal-footer" style="text-align: center">
           ${newRig.renderInfo()}
-
+          ${newRig.renderEditButton()}
         </div>
       </div>
     </li>`)
-  })
-}
-
-function minersMining(miners) {
-  return miners.every(function(miner) {
-    miner.status === true
   })
 }

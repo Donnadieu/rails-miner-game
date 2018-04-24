@@ -2,6 +2,8 @@
   <h1>You do not have any mining rigs click below to create a new one</h1>
 <% else %>
   <div class="container">
+    <%= button_to 'New Mining Rig', new_user_mining_rig_path(current_user), {method: 'get', class: 'btn btn-success btn-lg'} %>
+    <br></br>
       <div class="row">
         <ul class="thumbnails list-unstyled">
           <%= content_tag_for(:li, @mining_rigs, class: 'col-md-3') do |mining_rig| %>
@@ -11,4 +13,3 @@
       </div>
   </div>
 <% end %>
-<%= button_to 'New Mining Rig', new_user_mining_rig_path(current_user), {method: 'get', class: 'btn btn-success btn-lg'} %>
