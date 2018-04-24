@@ -11,7 +11,6 @@ class MiningRig < ApplicationRecord
   def mining_rig_miners_attributes=(mining_rig_miners_attributes)
     mining_rig_miners_attributes.each_value do |mining_rig_miners_attribute|
       if !mining_rig_miners_attribute[:hash_rate].empty?
-        binding.pry
         miner = Miner.create(hash_rate: mining_rig_miners_attribute[:hash_rate])
         mining_rig_miner = self.mining_rig_miners.build
         mining_rig_miner.update(mining_rig_miners_attribute)

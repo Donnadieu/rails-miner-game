@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-      <ul class="thumbnails list-unstyled">
+      <ul class="thumbnails list-unstyled" id="miners_list">
         <%= content_tag_for(:li, @mining_rig_miners, class: 'col-md-3') do |mining_rig_miner| %>
           <%= render partial: 'miners/miner', locals: {miner: mining_rig_miner.miner, mining_rig_miner: mining_rig_miner} %>
         <% end %>

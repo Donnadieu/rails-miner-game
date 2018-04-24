@@ -93,4 +93,4 @@ $(function() {
       renderMiningRigs(miningRigs)
     })
   })
-  
+})

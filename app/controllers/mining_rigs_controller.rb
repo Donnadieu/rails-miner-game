@@ -66,12 +66,12 @@ class MiningRigsController < ApplicationController
   end
 
   def show
-    binding.pry
     @mining_rig_miners = @mining_rig.mining_rig_miners
+    @miners = @mining_rig.miners
 
     respond_to do |format|
       format.html { render 'show'}
-      format.json { render json: @mining_rig_miners, status: 200}
+      format.json { render json: @miners, status: 200}
     end
   end
 
