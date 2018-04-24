@@ -23,12 +23,14 @@ class MiningRig < ApplicationRecord
   end
 
   def change_status
-    if status
-      self.status = false
-    else
-      self.status = true
+    miners.each do |miner|
+      if miner.status
+        miner.status = false
+      else
+        miner.status = true
+      end
+      miner.save
     end
-    save
   end
 
   def total_cosumption

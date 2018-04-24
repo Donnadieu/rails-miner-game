@@ -64,7 +64,6 @@ module ApplicationHelper
       end
       miner.save
     end
-    binding.pry
   end
 
   def miners_mining?(miners)
