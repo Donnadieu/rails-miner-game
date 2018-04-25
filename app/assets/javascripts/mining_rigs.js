@@ -72,25 +72,37 @@ function renderMiningRigs(miningRigs, authenticity_token) {
     </li>`)
   })
 }
-$(function() {
-  $('#new_mining_rig').unbind("submit").on('submit', function(event) {
-    event.preventDefault()
-    const url = this.attributes.action.value
-    const data = {
-      'authenticity_token': this.elements['authenticity_token'].value,
-      'mining_rig': {
-        'name': $('#mining_rig_name').val(),
-        'mining_rig_miners_attributes': {
-          '0':{
-            'hash_rate': $('#mining_rig_mining_rig_miners_attributes_0_hash_rate').val(),
-            'brand': $('#mining_rig_mining_rig_miners_attributes_0_brand').val()
-          }
+function getIndex(e) {
+  e.preventDefault()
+
+  const userId = e.target.dataset.id
+  const url = `/users/${userId}/mining_rigs.json`
+  const authenticity_token = e.target.attributes.authenticity_token.value
+
+  $.get(url, authenticity_token, function(miningRigs){
+    $("#main").html(renderMiningRigIndex(userId))
+    renderMiningRigs(miningRigs, authenticity_token)
+  })
+}
+
+function createRig(e) {
+  event.preventDefault()
+
+  const url = e.currentTarget.action
+  const data = {
+    'authenticity_token': e.currentTarget.elements[1].value,
+    'mining_rig': {
+      'name': $('#mining_rig_name').val(),
+      'mining_rig_miners_attributes': {
+        '0':{
+          'hash_rate': $('#mining_rig_mining_rig_miners_attributes_0_hash_rate').val(),
+          'brand': $('#mining_rig_mining_rig_miners_attributes_0_brand').val()
         }
       }
     }
-    $.post(url, data, function(miningRigs) {
-      $("#main").html(renderMiningRigIndex(miningRigs[0].user.id))
-      renderMiningRigs(miningRigs)
-    })
+  }
+  $.post(url, data, function(miningRigs) {
+    $("#main").html(renderMiningRigIndex(miningRigs[0].user.id))
+    renderMiningRigs(miningRigs)
   })
-})
+}
