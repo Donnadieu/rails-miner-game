@@ -82,11 +82,28 @@ function getIndex(e) {
   $.get(url, authenticity_token, function(miningRigs){
     $("#main").html(renderMiningRigIndex(userId))
     renderMiningRigs(miningRigs, authenticity_token)
+
+  })
+}
+
+function filterMiningRig(e) {
+  e.preventDefault()
+  // debugger
+  const userId = e.currentTarget.dataset.id
+  const url = `/users/${userId}/mining_rigs.json`
+  const authenticity_token = $("input[name='authenticity_token']").val()
+
+  $.get(url, function(miningRigs){
+    const filterMiningRigs = miningRigs.filter((miningRig) => {
+      return miningRig.miners.length > 1
+    })
+    $("#main").html(renderMiningRigIndex(userId))
+    renderMiningRigs(filterMiningRigs, authenticity_token)
   })
 }
 
 function createRig(e) {
-  event.preventDefault()
+  e.preventDefault()
 
   const url = e.currentTarget.action
   const data = {

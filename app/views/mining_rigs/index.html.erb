@@ -3,6 +3,8 @@
 <% else %>
   <div class="container">
     <%= button_to 'New Mining Rig', new_user_mining_rig_path(current_user), {method: 'get', class: 'btn btn-success btn-lg'} %>
+    <br>
+    <%= button_to 'Filter', new_user_mining_rig_path(current_user), {method: 'get', class: 'btn btn-success btn-lg', id: 'filter-mining-rig', "data-id": current_user.id} %>
     <br></br>
       <div class="row">
         <ul class="thumbnails list-unstyled">
