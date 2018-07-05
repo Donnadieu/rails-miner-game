@@ -27,7 +27,7 @@ function renderMinerIndex() {
             </div>
           </div>`)
 }
-function rednerMiners(miners) {
+function renderMiners(miners) {
   miners.forEach(function(miner) {
     const newMiner = new Miner(miner.id, miner.consumption, miner.hash_rate, miner.status, miner.mining_rig_miners[0].brand)
 
@@ -47,11 +47,12 @@ function rednerMiners(miners) {
   })
 }
 function getMiners(e) {
-  event.preventDefault()
+
+  e.preventDefault()
   const  url = `${e.target.href}.json`
 
   $.get(url, function(miners) {
     $('#main').html(renderMinerIndex())
-    rednerMiners(miners)
+    renderMiners(miners)
   })
 }

@@ -86,7 +86,7 @@ function getMiningRigsIndex(e) {
 
 function createRig(e) {
   e.preventDefault()
-
+  debugger
   const url = e.currentTarget.action
   const data = {
     'authenticity_token': e.currentTarget.elements[1].value,

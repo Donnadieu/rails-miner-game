@@ -45,6 +45,7 @@ class MiningRigsController < ApplicationController
   end
 
   def update
+    binding.pry
     hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
 
     if @mining_rig.update(mining_rig_params)
