@@ -8,9 +8,9 @@ function MiningRig(id, name, status, miners, userId) {
 MiningRig.prototype.renderName = function () {
   return(`<h2><a id="mining_rig_name" href="/users/${this.userId}/mining_rigs/${this.id}">${this.name}</a></h2>`)
 }
-MiningRig.prototype.renderSartMiningButton = function (authenticity_token) {
+MiningRig.prototype.renderSartMiningButton = function () {
   if (!this.status) {
-    return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"><input type="hidden" name="authenticity_token" value="${authenticity_token}"></form>
+    return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"></form>
             <small>(Mining time: 24hrs by default)</small>
           `)
   } else {
@@ -53,7 +53,7 @@ function renderMiningRigIndex (userId) {
         `)
 }
 
-function renderMiningRigs(miningRigs, authenticity_token) {
+function renderMiningRigs(miningRigs) {
   miningRigs.forEach(function(miningRig) {
     const newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
 
@@ -62,7 +62,7 @@ function renderMiningRigs(miningRigs, authenticity_token) {
         <div class="thumbnail" style="padding: 0">
           <div class="caption">
             ${newRig.renderName()}
-            ${newRig.renderSartMiningButton(authenticity_token)}
+            ${newRig.renderSartMiningButton()}
           </div>
           <div class="modal-footer" style="text-align: center">
           ${newRig.renderInfo()}
@@ -72,33 +72,15 @@ function renderMiningRigs(miningRigs, authenticity_token) {
     </li>`)
   })
 }
-function getIndex(e) {
+function getMiningRigsIndex(e) {
   e.preventDefault()
 
   const userId = e.target.dataset.id
   const url = `/users/${userId}/mining_rigs.json`
-  const authenticity_token = e.target.attributes.authenticity_token.value
-
-  $.get(url, authenticity_token, function(miningRigs){
-    $("#main").html(renderMiningRigIndex(userId))
-    renderMiningRigs(miningRigs, authenticity_token)
-
-  })
-}
-
-function filterMiningRig(e) {
-  e.preventDefault()
-  // debugger
-  const userId = e.currentTarget.dataset.id
-  const url = `/users/${userId}/mining_rigs.json`
-  const authenticity_token = $("input[name='authenticity_token']").val()
 
   $.get(url, function(miningRigs){
-    const filterMiningRigs = miningRigs.filter((miningRig) => {
-      return miningRig.miners.length > 1
-    })
     $("#main").html(renderMiningRigIndex(userId))
-    renderMiningRigs(filterMiningRigs, authenticity_token)
+    renderMiningRigs(miningRigs)
   })
 }
 

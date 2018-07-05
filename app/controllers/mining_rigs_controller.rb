@@ -19,6 +19,7 @@ class MiningRigsController < ApplicationController
     hash_rate = params["mining_rig"]["mining_rig_miners_attributes"]["0"]["hash_rate"].to_i
 
     if enough_balance?(hash_rate)
+      binding.pry
       if @mining_rig.save
         miner = @mining_rig.miners.last
 
@@ -31,7 +32,7 @@ class MiningRigsController < ApplicationController
 
       else
         flash[:error] = @mining_rig.errors.full_messages.to_sentence
-        render :new
+        render :new, status: 221
       end
     else
       flash[:error] = 'You do not have enough balance'
