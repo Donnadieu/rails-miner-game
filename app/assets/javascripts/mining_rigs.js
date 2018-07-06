@@ -8,9 +8,13 @@ function MiningRig(id, name, status, miners, userId) {
 MiningRig.prototype.renderName = function () {
   return(`<h2><a id="mining_rig_name" href="/users/${this.userId}/mining_rigs/${this.id}">${this.name}</a></h2>`)
 }
-MiningRig.prototype.renderSartMiningButton = function () {
+MiningRig.prototype.renderSartMiningButton = function (authenticityToken) {
   if (!this.status) {
-    return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners"><input type="hidden" name="_method" value="patch"><input class="btn btn-primary btn-sm" type="submit" value="Start Mining"></form>
+    return(`<form class="button_to" method="post" action="/mining_rig/${this.id}/miners">
+              <input type="hidden" name="_method" value="patch">
+              <input class="btn btn-primary btn-sm" type="submit" value="Start Mining">
+              <input type="hidden" name="authenticity_token" value=${authenticityToken}>
+            </form>
             <small>(Mining time: 24hrs by default)</small>
           `)
   } else {
@@ -56,17 +60,18 @@ function renderMiningRigIndex (userId) {
 function renderMiningRigs(miningRigs) {
   miningRigs.forEach(function(miningRig) {
     const newRig = new MiningRig(miningRig.id, miningRig.name, miningRig.status, miningRig.miners, miningRig.user.id)
+    const authenticityToken = $('meta[name=csrf-token]').attr('content')
 
     $("#mining_rig_list").append(`
       <li class="mining_rig col-md-3" id="mining_rig_${newRig.id}">
         <div class="thumbnail" style="padding: 0">
           <div class="caption">
             ${newRig.renderName()}
-            ${newRig.renderSartMiningButton()}
+            ${newRig.renderSartMiningButton(authenticityToken)}
           </div>
           <div class="modal-footer" style="text-align: center">
           ${newRig.renderInfo()}
-          ${newRig.renderEditButton()}
+          ${newRig.renderEditButton(authenticityToken)}
         </div>
       </div>
     </li>`)
